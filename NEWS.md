@@ -31,6 +31,12 @@
   with one BLAS thread each, as the other parallel steps already started
   them.
 
+* **The plots and prints of the results every model package returns live
+  here**: `plot()` of forecasts ('bvarprd', 'bvarprdlist'), impulse responses
+  ('bvarirf') and variance decompositions ('bvarfevd'), and `print()` of time
+  variation tests ('bvartimevar'). dfmtools returns these classes too, so it
+  can plot them without bvartools. The class names stay as they are.
+
 * `chain_diagnostics()` and `combine_models()` accept a model of any package:
   a list with an element `model` that is not a list of models.
 

@@ -31,3 +31,24 @@ time_variation_test.default <- function(object, ...) {
        "'modellist', 'expandingwindow' and 'modelfolder' objects that hold them.",
        call. = FALSE)
 }
+
+#' @export
+print.bvartimevar <- function(x, digits = 2, ...) {
+
+  cat("Bayes factors for time variation (Savage-Dickey, Chan 2018)\n")
+  cat("log BF > 0 favours time variation; |log BF| > 3 is strong evidence\n\n")
+
+  for (b in unique(x[["block"]])) {
+    rows <- x[x[["block"]] == b, , drop = FALSE]
+    out <- data.frame(equation = ifelse(is.na(rows[["equation"]]), "", rows[["equation"]]),
+                      term = rows[["term"]],
+                      `log BF` = formatC(rows[["log_bf"]], format = "f", digits = digits),
+                      NSE = formatC(rows[["nse"]], format = "f", digits = digits),
+                      check.names = FALSE, stringsAsFactors = FALSE)
+    cat(toupper(substring(b, 1, 1)), substring(b, 2), ":\n", sep = "")
+    print(out, row.names = FALSE, right = FALSE)
+    cat("\n")
+  }
+
+  invisible(x)
+}

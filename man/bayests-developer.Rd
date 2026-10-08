@@ -3,6 +3,9 @@
 \name{bayests-developer}
 \alias{bayests-developer}
 \alias{draw_error_bars}
+\alias{forecast_plot_series}
+\alias{.check_max_groups}
+\alias{.limit_fevd_groups}
 \alias{.check_seed}
 \alias{.draw_model_seed}
 \alias{.offset_seed}
@@ -48,7 +51,11 @@ with the needs of the model packages.
   \code{.read_posterior_block} read datasets as the writers above wrote them,
   for a \code{\link{read_hdf5_model}} method.}
   \item{Plots}{\code{draw_error_bars} draws the error bars of the
-  forecast error plots.}
+  forecast error plots, and \code{forecast_plot_series} turns a forecast of
+  class 'bvarprd' into the series its plot draws.}
+  \item{Variance decompositions}{\code{.check_max_groups} and
+  \code{.limit_fevd_groups} check and apply the limit on the number of
+  shock groups a decomposition shows.}
   \item{Model comparison}{\code{.log_mean_exp}, \code{.nse_log_mean_exp},
   \code{.lpl_entry}, \code{.loo_data_frame} and \code{.waic_data_frame} are
   the pieces \code{\link{selection_criteria}} methods assemble their results
