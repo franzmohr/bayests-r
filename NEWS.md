@@ -9,6 +9,13 @@
   and analysis, the forecast pooling and external forecasts, and the
   `add_dummy_variables()` generic.
 
+* `.with_model_seed()`, `.stage_seed()` and `.with_stage_seed()` join the
+  functions for model packages. They are the seeding of bvartools and dfmtools,
+  which each kept a copy: the first evaluates an expression with R's generator
+  set to a model's seed, the other two derive the seed of the forecast, the
+  predictive score or the rotations from it. One copy keeps the models of the
+  two packages seeded alike. Draws are unchanged.
+
 * The documentation of the 'modellist' and 'expandingwindow' methods no longer
   says that forecasts are never seeded per model: bvartools now derives the seed
   of a model's forecast from `object$model$seed`, so a seeded model forecasts the
