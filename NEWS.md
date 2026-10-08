@@ -32,4 +32,9 @@
   a list with an element `model` that is not a list of models.
 
 * The helpers bvartools calls from its methods are exported under their
-  dot-names and documented in `?"bayests-developer"`.
+  dot-names, with `draw_error_bars()` for its forecast error plots, and
+  documented in `?"bayests-developer"`.
+
+* `add_predictive_loglik()` documents the generic only. How a draw is carried
+  one period forward depends on the model, so the method for an expanding
+  window of VAR and VEC models stays in bvartools with its documentation.
