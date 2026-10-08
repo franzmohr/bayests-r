@@ -9,6 +9,12 @@
   and analysis, the forecast pooling and external forecasts, and the
   `add_dummy_variables()` generic.
 
+* The documentation of the 'modellist' and 'expandingwindow' methods no longer
+  says that forecasts are never seeded per model: bvartools now derives the seed
+  of a model's forecast from `object$model$seed`, so a seeded model forecasts the
+  same on any number of workers. Only a model without a seed forecasts from the
+  streams of the workers. Nothing in this package changes draws.
+
 * **Renamed while unreleased.** Functions that read from disk start with
   `read_`, as R users expect: `read_model_file()` (was `open_model()`),
   `read_model_folder()` (was `open_models()`), `read_model_groups()` (was
