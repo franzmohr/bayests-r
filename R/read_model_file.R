@@ -1,8 +1,9 @@
-#' Open a Model Stored in an HDF5 File
+#' Read the Handle of a Model Stored in an HDF5 File
 #'
-#' Opens a model written with \code{\link{write_to_hdf5}} and returns a handle
-#' to it, which the analysis functions work through a piece of the chain at a
-#' time rather than reading every draw into the session.
+#' Reads the specification of a model written with \code{\link{write_to_hdf5}}
+#' from its file and returns a handle to it, which the analysis functions work
+#' through a piece of the chain at a time rather than reading every draw into
+#' the session.
 #'
 #' @param filename path to an HDF5 file holding a model.
 #' @param group the group the model's tree hangs under inside its file, as
@@ -45,7 +46,7 @@
 #' unlink(file)
 #' write_to_hdf5(model, filename = file)
 #'
-#' stored <- open_model(file)
+#' stored <- read_model_file(file)
 #' stored
 #'
 #' # The analysis reads the draws in pieces
@@ -54,7 +55,7 @@
 #'
 #' @family model comparison
 #' @export
-open_model <- function(filename, group = "") {
+read_model_file <- function(filename, group = "") {
 
   if (!file.exists(filename)) {
     stop("File ", filename, " does not exist.")
@@ -72,7 +73,7 @@ open_model <- function(filename, group = "") {
   result
 }
 
-#' @rdname open_model
+#' @rdname read_model_file
 #' @param x an object of class 'modelfile'.
 #' @param ... further arguments passed to or from other methods.
 #' @export
@@ -114,7 +115,7 @@ print.modelfile <- function(x, ...) {
 #' model holding each piece, which is how the analysis of a model too large to
 #' hold is done.
 #'
-#' @param x an object of class 'modelfile', from \code{\link{open_model}}.
+#' @param x an object of class 'modelfile', from \code{\link{read_model_file}}.
 #' @param f a function taking a model and returning whatever the caller wants to
 #' keep of that piece of the chain.
 #' @param ... further arguments passed to \code{f}.
@@ -146,7 +147,7 @@ print.modelfile <- function(x, ...) {
 #' unlink(file)
 #' write_to_hdf5(model, filename = file)
 #'
-#' stored <- open_model(file)
+#' stored <- read_model_file(file)
 #'
 #' # The mean of every coefficient, without reading the chain at once
 #' sums <- map_draws(stored, function(model) {
@@ -159,7 +160,7 @@ print.modelfile <- function(x, ...) {
 map_draws <- function(x, f, ..., chunk = 100) {
 
   if (!inherits(x, "modelfile")) {
-    stop("Argument 'x' must be of class 'modelfile'. Use open_model().")
+    stop("Argument 'x' must be of class 'modelfile'. Use read_model_file().")
   }
   f <- match.fun(f)
   chunk <- max(1L, as.integer(chunk))

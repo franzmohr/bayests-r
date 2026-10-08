@@ -1,8 +1,9 @@
-#' Open a Folder of Stored Models
+#' Read the Manifest of a Folder of Stored Models
 #'
-#' Opens a folder written with \code{\link{write_to_hdf5}} and returns a handle
-#' to the models in it, which the estimation steps work on one at a time rather
-#' than reading all of them into the session.
+#' Reads the specifications of the models in a folder written with
+#' \code{\link{write_to_hdf5}} into a manifest and returns a handle to them,
+#' which the estimation steps work on one at a time rather than reading all of
+#' them into the session.
 #'
 #' @param folder path to a folder holding models in HDF5 files.
 #'
@@ -17,7 +18,7 @@
 #' and what it is -- and none of the draws. \code{\link{map_models}} and the
 #' estimation steps for a handle then read one model, change it, write it back
 #' and drop it, so a step costs one model per worker rather than the whole
-#' folder. \code{\link{open_model}} is the same idea for one model whose chain is
+#' folder. \code{\link{read_model_file}} is the same idea for one model whose chain is
 #' too long to hold: a handle to a file, read a piece at a time.
 #'
 #' The manifest is built by reading the specification of every model, which is a
@@ -44,13 +45,13 @@
 #' dir.create(folder, recursive = TRUE)
 #' write_to_hdf5(models, folder = folder)
 #'
-#' stored <- open_models(folder)
+#' stored <- read_model_folder(folder)
 #' stored
 #' stored[["manifest"]][, c("model", "p", "iterations")]
 #'
 #' @family model comparison
 #' @export
-open_models <- function(folder) {
+read_model_folder <- function(folder) {
 
   if (!dir.exists(folder)) {
     stop("Folder ", folder, " does not exist.")
@@ -66,7 +67,7 @@ open_models <- function(folder) {
   for (file in files) {
     filename <- file.path(folder, file)
     stem <- tools::file_path_sans_ext(file)
-    for (group in list_models_in_hdf5(filename)) {
+    for (group in read_model_groups(filename)) {
       name <- if (group == "") stem else paste0(stem, ":", group)
       rows[[length(rows) + 1]] <-
         .model_row(.model_spec_in_hdf5(filename, group), name, file, group)
@@ -84,7 +85,7 @@ open_models <- function(folder) {
             class = c("modelfolder", "list"))
 }
 
-#' @rdname open_models
+#' @rdname read_model_folder
 #' @param x an object of class 'modelfolder'.
 #' @param ... further arguments passed to or from other methods.
 #' @export
@@ -101,7 +102,7 @@ print.modelfolder <- function(x, ...) {
   invisible(x)
 }
 
-#' @rdname open_models
+#' @rdname read_model_folder
 #' @param models character vector of the models to name, as the manifest names
 #' them, or \code{NULL} for all of them.
 #' @details
@@ -117,7 +118,7 @@ print.modelfolder <- function(x, ...) {
 model_files <- function(x, models = NULL) {
 
   if (!inherits(x, "modelfolder")) {
-    stop("Argument 'x' must be of class 'modelfolder'. Use open_models().")
+    stop("Argument 'x' must be of class 'modelfolder'. Use read_model_folder().")
   }
 
   manifest <- .select_models(x[["manifest"]], models)

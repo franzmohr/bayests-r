@@ -3,15 +3,18 @@
 * **The shared R layer of bvartools, dfmtools and ucmtools, taken out of
   bvartools 1.0.0.** 180 functions moved: the generics of the workflow, the
   `modellist` and `expandingwindow` methods, reading and writing model files,
-  the stored-model functions (`open_model()`, `open_models()`,
+  the stored-model functions (`read_model_file()`, `read_model_folder()`,
   `map_models()`), the BayesTS command line runners and the model
   comparison functions. bvartools keeps its VAR and VEC models, their priors
   and analysis, the forecast pooling and external forecasts, and the
   `add_dummy_variables()` generic.
 
-* **Renamed while unreleased.** The class of `open_model()` is `modelfile`
-  (was `bvarfile`) and that of `open_models()` is `modelfolder` (was
-  `bvarfolder`). The options are `bayests.executable` (was
+* **Renamed while unreleased.** Functions that read from disk start with
+  `read_`, as R users expect: `read_model_file()` (was `open_model()`),
+  `read_model_folder()` (was `open_models()`), `read_model_groups()` (was
+  `list_models_in_hdf5()`) and the new generic `read_hdf5_model()`. The class
+  of `read_model_file()` is `modelfile` (was `bvarfile`) and that of
+  `read_model_folder()` is `modelfolder` (was `bvarfolder`). The options are `bayests.executable` (was
   `bvartools.bayests_executable`) and `bayests.size_warning` (was
   `bvartools.size_warning`). None of these were in a CRAN release.
 
@@ -19,11 +22,11 @@
   The class comes from `/model/rclass` or, for a file of the BayesTS command
   line, from the prefix of its algorithm (`Var`, `Vec`, `Dfm`, `Favar`, `Uc`).
   The defining package is loaded, and the file is handed to the new generic
-  `from_hdf5()`, whose default reads the tree and calls
-  `from_bayests_tree()`. The VAR and VEC reader becomes a `from_hdf5()`
+  `read_hdf5_model()`, whose default reads the tree and calls
+  `from_bayests_tree()`. The VAR and VEC reader becomes a `read_hdf5_model()`
   method of bvartools.
 
-* `open_models()` adds a `package` column to its manifest, and the workers of
+* `read_model_folder()` adds a `package` column to its manifest, and the workers of
   `map_models()` attach that package and this one rather than bvartools,
   with one BLAS thread each, as the other parallel steps already started
   them.

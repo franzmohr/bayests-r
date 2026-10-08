@@ -150,7 +150,7 @@
   return("algorithm" %in% hdf5r::h5attr_names(object))
 }
 
-# Recursive worker behind list_models_in_hdf5.
+# Recursive worker behind read_model_groups.
 .collect_hdf5_model_groups <- function(h5_file, group) {
 
   if (.is_hdf5_model_group(h5_file, group)) {
@@ -173,9 +173,9 @@
   return(found)
 }
 
-#' Models in an HDF5 File
+#' Read the Groups of an HDF5 File That Hold a Model
 #'
-#' Finds the groups of an HDF5 file that hold a model.
+#' Reads the groups of an HDF5 file and returns those that hold a model.
 #'
 #' @param filename path to an HDF5 file.
 #' @param group the group to search under. Defaults to \code{""}, the root of
@@ -211,10 +211,10 @@
 #'                 group = paste0("/models/", p))
 #' }
 #'
-#' list_models_in_hdf5(path_to_model)
+#' read_model_groups(path_to_model)
 #'
 #' @export
-list_models_in_hdf5 <- function(filename, group = "") {
+read_model_groups <- function(filename, group = "") {
 
   group <- .normalize_hdf5_group(group)
 

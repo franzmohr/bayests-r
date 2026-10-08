@@ -24,7 +24,7 @@ Imports every model stored below a folder.
 \details{
 The folder is walked recursively, and each HDF5 file in it is asked which of
 its groups hold a model -- so a file holding several models contributes all
-of them. See \code{\link{list_models_in_hdf5}} for what counts as one.
+of them. See \code{\link{read_model_groups}} for what counts as one.
 
 The result is a flat named list rather than a nesting that mirrors the
 directory tree. Each name is the path of the file relative to \code{folder}
@@ -48,7 +48,7 @@ records, not from its file name.
 \code{integer(0)} the models come back with their specification, their data
 and their priors and no draws, and with a vector of positions the chain is
 read a piece at a time. For working on the models rather than reading them,
-\code{\link{open_models}} hands them over one at a time instead.
+\code{\link{read_model_folder}} hands them over one at a time instead.
 }
 \examples{
 \dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}

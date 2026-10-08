@@ -52,8 +52,8 @@ Other model comparison:
 \code{\link{folder_steps}},
 \code{\link[=map_draws]{map_draws()}},
 \code{\link[=map_models]{map_models()}},
-\code{\link[=open_model]{open_model()}},
-\code{\link[=open_models]{open_models()}},
+\code{\link[=read_model_file]{read_model_file()}},
+\code{\link[=read_model_folder]{read_model_folder()}},
 \code{\link[=selection_criteria.default]{selection_criteria.default()}},
 \code{\link[=selection_criteria.modellist]{selection_criteria.modellist()}}
 }

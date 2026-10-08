@@ -4,7 +4,7 @@
 #' drops it, so that a step over many models costs the memory of one model per
 #' worker rather than of all of them.
 #'
-#' @param x an object of class 'modelfolder', from \code{\link{open_models}}.
+#' @param x an object of class 'modelfolder', from \code{\link{read_model_folder}}.
 #' @param f a function taking a model -- a 'bvarmodel', a 'bvecmodel', or the
 #' model of another package that \code{\link{read_model_from_hdf5}} reads -- and
 #' returning one. If it has an argument named \code{index}, the position of the
@@ -77,7 +77,7 @@
 #' dir.create(folder, recursive = TRUE)
 #' write_to_hdf5(models, folder = folder)
 #'
-#' stored <- open_models(folder)
+#' stored <- read_model_folder(folder)
 #'
 #' # What add_priors() for a folder does
 #' stored <- map_models(stored, function(model) {
@@ -93,7 +93,7 @@ map_models <- function(x, f, ..., models = NULL, write = TRUE, cores = 1,
                        export = NULL) {
 
   if (!inherits(x, "modelfolder")) {
-    stop("Argument 'x' must be of class 'modelfolder'. Use open_models().")
+    stop("Argument 'x' must be of class 'modelfolder'. Use read_model_folder().")
   }
   f <- match.fun(f)
 

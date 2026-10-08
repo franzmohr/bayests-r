@@ -25,8 +25,8 @@ another:
   methods the model packages define;
   \item model files: \code{\link{read_model_from_hdf5}},
   \code{\link{read_bayests_tree}}, \code{\link{write_bayests_tree}},
-  \code{\link{list_models_in_hdf5}}, \code{\link{open_model}} and
-  \code{\link{open_models}};
+  \code{\link{read_model_groups}}, \code{\link{read_model_file}} and
+  \code{\link{read_model_folder}};
   \item lists of models, of class 'modellist' and 'expandingwindow', whose
   methods apply a step of the workflow to every model they hold, in parallel
   where asked;

@@ -15,7 +15,7 @@
 #'
 #' With a \code{group} every path the reader looks for is read under it
 #' instead of at the root, so one file can hold several models side by side.
-#' \code{\link{list_models_in_hdf5}} reports which groups of a file hold one.
+#' \code{\link{read_model_groups}} reports which groups of a file hold one.
 #'
 #' The spelling is the one the BayesTS command line uses for its \code{--group}
 #' flag: a leading slash and no trailing slash, with \code{""} for the root.
@@ -46,7 +46,7 @@
 #' }
 #' That package's namespace is loaded, so that its methods are registered
 #' whether or not it is attached, and the file is handed to its
-#' \code{\link{from_hdf5}} method -- or, where it has none, read as a tree and
+#' \code{\link{read_hdf5_model}} method -- or, where it has none, read as a tree and
 #' handed to its \code{\link{from_bayests_tree}} method.
 #'
 #' @return An object of the class recorded in the file, as the package that
@@ -55,7 +55,7 @@
 #' estimated, \code{posterior}. The draws of a sampler are
 #' \code{\link[coda]{mcmc}} objects.
 #'
-#' @seealso \code{\link{from_hdf5}}, \code{\link{from_bayests_tree}},
+#' @seealso \code{\link{read_hdf5_model}}, \code{\link{from_bayests_tree}},
 #' \code{\link{read_bayests_tree}}, \code{\link{write_to_hdf5}}.
 #'
 #' @export
@@ -77,7 +77,7 @@ read_model_from_hdf5 <- function(filename, group = "", draws = NULL) {
   }
 
   model_class <- .stored_model_class(h5_root)
-  from_hdf5(structure(list(), class = model_class), h5_root = h5_root,
+  read_hdf5_model(structure(list(), class = model_class), h5_root = h5_root,
             draws = draws)
 }
 
@@ -108,13 +108,13 @@ read_model_from_hdf5 <- function(filename, group = "", draws = NULL) {
 #' @return An object of the class of \code{x}.
 #'
 #' @export
-from_hdf5 <- function(x, h5_root, draws = NULL, ...) {
-  UseMethod("from_hdf5")
+read_hdf5_model <- function(x, h5_root, draws = NULL, ...) {
+  UseMethod("read_hdf5_model")
 }
 
-#' @rdname from_hdf5
+#' @rdname read_hdf5_model
 #' @export
-from_hdf5.default <- function(x, h5_root, draws = NULL, ...) {
+read_hdf5_model.default <- function(x, h5_root, draws = NULL, ...) {
   tree <- .hdf5_read_tree(h5_root, draws, "")
   class(tree) <- class(x)
   from_bayests_tree(tree)

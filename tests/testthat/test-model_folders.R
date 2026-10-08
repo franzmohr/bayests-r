@@ -1,4 +1,4 @@
-# open_models(), map_models() and the steps of a 'modelfolder': models kept in
+# read_model_folder(), map_models() and the steps of a 'modelfolder': models kept in
 # files and worked on one at a time.
 
 write_test_folder <- function(n = 1:3) {
@@ -10,7 +10,7 @@ write_test_folder <- function(n = 1:3) {
 test_that("the manifest lists every model with its algorithm and package", {
   folder <- write_test_folder(1:3)
 
-  x <- open_models(folder)
+  x <- read_model_folder(folder)
 
   expect_s3_class(x, "modelfolder")
   manifest <- x[["manifest"]]
@@ -35,7 +35,7 @@ test_that("a model's package comes from the file, or from its algorithm", {
 
 test_that("a step applied to a folder is written back into each file", {
   folder <- write_test_folder(1:2)
-  x <- open_models(folder)
+  x <- read_model_folder(folder)
 
   x <- add_priors(x, scale = 3)
 
@@ -47,7 +47,7 @@ test_that("a step applied to a folder is written back into each file", {
 
 test_that("map_models() returns what the function returns when not writing", {
   folder <- write_test_folder(1:3)
-  x <- open_models(folder)
+  x <- read_model_folder(folder)
 
   n <- map_models(x, function(model) model[["model"]][["n"]], write = FALSE)
 
@@ -58,7 +58,7 @@ test_that("map_models() returns what the function returns when not writing", {
 
 test_that("a folder's seeds number its models from the one given", {
   folder <- write_test_folder(1:3)
-  x <- add_seed(open_models(folder), 50)
+  x <- add_seed(read_model_folder(folder), 50)
 
   seeds <- map_models(x, function(model) model[["model"]][["seed"]], write = FALSE)
   expect_setequal(unlist(seeds, use.names = FALSE), 50:52)

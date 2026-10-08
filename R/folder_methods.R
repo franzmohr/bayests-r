@@ -5,7 +5,7 @@
 #' it, writes it back and drops it, so a step costs one model per worker.
 #'
 #' @param object an object of class 'modelfolder', from
-#' \code{\link{open_models}}.
+#' \code{\link{read_model_folder}}.
 #' @param x an object of class 'modelfolder'.
 #' @param seed an integer, the seed of the first model. The models are numbered
 #' through in the order of the manifest, as the models of a list are.
@@ -54,7 +54,7 @@
 #' dir.create(folder, recursive = TRUE)
 #' write_to_hdf5(models, folder = folder)
 #'
-#' stored <- open_models(folder)
+#' stored <- read_model_folder(folder)
 #' stored <- add_priors(stored, coef = list(v_i = 1),
 #'                      sigma = list(df = 3, scale = 1))
 #' stored <- add_initial_values(stored)

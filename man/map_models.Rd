@@ -7,7 +7,7 @@
 map_models(x, f, ..., models = NULL, write = TRUE, cores = 1, export = NULL)
 }
 \arguments{
-\item{x}{an object of class 'modelfolder', from \code{\link{open_models}}.}
+\item{x}{an object of class 'modelfolder', from \code{\link{read_model_folder}}.}
 
 \item{f}{a function taking a model -- a 'bvarmodel', a 'bvecmodel', or the
 model of another package that \code{\link{read_model_from_hdf5}} reads -- and
@@ -93,7 +93,7 @@ unlink(folder, recursive = TRUE)
 dir.create(folder, recursive = TRUE)
 write_to_hdf5(models, folder = folder)
 
-stored <- open_models(folder)
+stored <- read_model_folder(folder)
 
 # What add_priors() for a folder does
 stored <- map_models(stored, function(model) {
@@ -111,8 +111,8 @@ Other model comparison:
 \code{\link[=choose_best_model.selcritlist]{choose_best_model.selcritlist()}},
 \code{\link{folder_steps}},
 \code{\link[=map_draws]{map_draws()}},
-\code{\link[=open_model]{open_model()}},
-\code{\link[=open_models]{open_models()}},
+\code{\link[=read_model_file]{read_model_file()}},
+\code{\link[=read_model_folder]{read_model_folder()}},
 \code{\link[=selection_criteria.default]{selection_criteria.default()}},
 \code{\link[=selection_criteria.modellist]{selection_criteria.modellist()}}
 }

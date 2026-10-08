@@ -1,10 +1,10 @@
 # read_model_from_hdf5(): which class and package a file is read as, and the
-# from_hdf5() step a package can take over from the tree.
+# read_hdf5_model() step a package can take over from the tree.
 
-test_that("a file is read through the from_hdf5() method of its class", {
-  registerS3method("from_hdf5", "groupmodel", function(x, h5_root, draws = NULL, ...) {
+test_that("a file is read through the read_hdf5_model() method of its class", {
+  registerS3method("read_hdf5_model", "groupmodel", function(x, h5_root, draws = NULL, ...) {
     structure(list("model" = hdf5r::h5attributes(h5_root[["model"]]),
-                   "read_by" = "from_hdf5.groupmodel"),
+                   "read_by" = "read_hdf5_model.groupmodel"),
               class = class(x))
   }, envir = asNamespace("bayests"))
 
@@ -16,11 +16,11 @@ test_that("a file is read through the from_hdf5() method of its class", {
   back <- read_model_from_hdf5(path)
 
   expect_s3_class(back, "groupmodel")
-  expect_identical(back[["read_by"]], "from_hdf5.groupmodel")
+  expect_identical(back[["read_by"]], "read_hdf5_model.groupmodel")
   expect_identical(back[["model"]][["k"]], 3L)
 })
 
-test_that("without a from_hdf5() method the tree goes to from_bayests_tree()", {
+test_that("without a read_hdf5_model() method the tree goes to from_bayests_tree()", {
   path <- temp_h5_file()
   model <- add_posterior_coefficients(test_model(n = 2L))
   write_to_hdf5(model, filename = path)

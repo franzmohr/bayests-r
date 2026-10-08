@@ -31,7 +31,7 @@ Imports model information and posterior draws from an HDF5 file.
 \details{
 With a \code{group} every path the reader looks for is read under it
 instead of at the root, so one file can hold several models side by side.
-\code{\link{list_models_in_hdf5}} reports which groups of a file hold one.
+\code{\link{read_model_groups}} reports which groups of a file hold one.
 
 The spelling is the one the BayesTS command line uses for its \code{--group}
 flag: a leading slash and no trailing slash, with \code{""} for the root.
@@ -62,10 +62,10 @@ its algorithm:
 }
 That package's namespace is loaded, so that its methods are registered
 whether or not it is attached, and the file is handed to its
-\code{\link{from_hdf5}} method -- or, where it has none, read as a tree and
+\code{\link{read_hdf5_model}} method -- or, where it has none, read as a tree and
 handed to its \code{\link{from_bayests_tree}} method.
 }
 \seealso{
-\code{\link{from_hdf5}}, \code{\link{from_bayests_tree}},
+\code{\link{read_hdf5_model}}, \code{\link{from_bayests_tree}},
 \code{\link{read_bayests_tree}}, \code{\link{write_to_hdf5}}.
 }
