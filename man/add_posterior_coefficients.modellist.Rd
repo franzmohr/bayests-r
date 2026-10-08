@@ -55,9 +55,11 @@ BLAS runs on one thread, as R's reference BLAS always does. An optimised
 BLAS such as OpenBLAS rounds some results differently in the last digits on
 one thread than on several, and a Markov chain carries such a difference
 forward, so a session running it on several threads gets different draws
-from the same posterior. Draws that are not seeded per model, such as those of
-\code{\link{add_posterior_forecasts}}, come from independent random number
-streams of the workers, set up with
+from the same posterior. The forecasts of a model with a seed are seeded per
+model too, where the model's package derives a seed for them from the model's
+own, as bvartools does, and so are equal on any number of workers. Draws that
+are not seeded per model, such as the forecasts of a model without a seed,
+come from independent random number streams of the workers, set up with
 \code{\link[parallel]{clusterSetRNGStream}} from R's generator. They are
 reproduced by \code{\link[base:Random]{set.seed}} for a given number of workers, but
 differ from those of a simulation on one core.

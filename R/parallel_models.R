@@ -170,7 +170,7 @@
   # parLapply rather than its load balancing variant: it hands the models out
   # in fixed chunks, so which stream a model draws from depends only on the
   # number of workers, and set.seed() reproduces draws that are not seeded per
-  # model, such as forecasts.
+  # model, such as the forecasts of a model without a seed.
   results <- parallel::parLapply(cl, models, .simulate_on_worker, .fun = .fun, ...)
   models <- NULL
 
