@@ -1,0 +1,109 @@
+Package: bayests
+Title: Model Files, Model Lists and Model Comparison for 'BayesTS' Samplers
+Version: 0.0.0.9000
+Authors@R: person(c("Franz", "X."), "Mohr", email = "franz.x.mohr@outlook.com", role = c("aut","cre","cph"), comment = c(ORCID = "0009-0003-8890-7781"))
+Description: The infrastructure shared by the R packages that run the samplers
+    of the 'BayesTS' library, such as 'bvartools' and 'dfmtools': the generic
+    functions of their model workflow, reading and writing model files in the
+    'BayesTS' 'HDF5' layout, lists of models and expanding windows, running
+    models through the 'BayesTS' command line, and comparing models by
+    information criteria, Pareto smoothed importance sampling leave-one-out
+    cross-validation (Vehtari, Gelman and Gabry 2017)
+    <doi:10.1007/s11222-016-9696-4> and predictive likelihoods. The package
+    estimates no model of its own.
+License: GPL (>= 2)
+Depends:
+    R (>= 4.0.0)
+Imports: coda, graphics, hdf5r, parallel, posterior (>= 1.7.0), stats, utils
+Suggests: bvartools, loo (>= 2.10.0), testthat (>= 3.0.0)
+Encoding: UTF-8
+Config/roxygen2/version: 8.1.0
+Config/testthat/edition: 3
+Collate: 
+    'add_forecast_errors.R'
+    'add_forecast_errors.expandingwindow.R'
+    'add_forecast_errors.modellist.R'
+    'add_forecast_input.R'
+    'add_forecast_input.expandingwindow.R'
+    'add_forecast_input.modellist.R'
+    'add_initial_values.R'
+    'add_initial_values.expandingwindow.R'
+    'add_initial_values.modellist.R'
+    'add_posterior_coefficients.R'
+    'add_posterior_coefficients.expandingwindow.R'
+    'add_posterior_coefficients.modellist.R'
+    'add_posterior_forecasts.R'
+    'add_posterior_forecasts.expandingwindow.R'
+    'add_posterior_forecasts.modellist.R'
+    'add_posterior_loglik.R'
+    'add_posterior_loglik.expandingwindow.R'
+    'add_posterior_loglik.modellist.R'
+    'add_predictive_loglik.R'
+    'add_priors.R'
+    'add_priors.expandingwindow.R'
+    'add_priors.modellist.R'
+    'add_seed.R'
+    'add_sign_restrictions.R'
+    'add_sign_restrictions.expandingwindow.R'
+    'add_sign_restrictions.modellist.R'
+    'add_sign_zero_restrictions.R'
+    'add_sign_zero_restrictions.expandingwindow.R'
+    'add_sign_zero_restrictions.modellist.R'
+    'align_model_obs.R'
+    'align_model_obs.modellist.R'
+    'bayests-package.R'
+    'bayests_files.R'
+    'bayests_posterior.R'
+    'bayests_tree.R'
+    'chains.R'
+    'choose_best_model.R'
+    'choose_best_model.selcritlist.R'
+    'combine_models.R'
+    'developer.R'
+    'draw_error_bars.R'
+    'draws_matrix.R'
+    'expected_model_size.R'
+    'expected_model_size.expandingwindow.R'
+    'expected_model_size.modellist.R'
+    'fevd.R'
+    'folder_methods.R'
+    'get_forecast_errors.R'
+    'get_model_specifications.R'
+    'get_model_specifications.expandingwindow.R'
+    'get_model_specifications.selcrit.R'
+    'hdf5_groups.R'
+    'hdf5_write.R'
+    'irf.R'
+    'map_models.R'
+    'open_model.R'
+    'open_models.R'
+    'parallel_models.R'
+    'plot.modellist.R'
+    'plot.selcritlist.R'
+    'plot_predictive_loglik.R'
+    'plot_selcrit_forecast_errors.R'
+    'prepare_forecast_input.R'
+    'print.modellist.R'
+    'selection_criteria.R'
+    'print.selcrit.R'
+    'print.selcritlist.R'
+    'psis_loo.R'
+    'read_expanding_window_model_from_folder.R'
+    'read_model_from_hdf5.R'
+    'read_models_from_folder.R'
+    'selection_criteria.default.R'
+    'selection_criteria.expandingwindow.R'
+    'selection_criteria.modellist.R'
+    'summary.expandingwindow.R'
+    'summary.modellist.R'
+    'thin.expandingwindow.R'
+    'thin.modellist.R'
+    'time_variation_test.R'
+    'time_variation_test.modellist.R'
+    'use_expanding_window.R'
+    'use_expanding_window.modellist.R'
+    'waic.R'
+    'window.modellist.R'
+    'write_to_hdf5.R'
+    'write_to_hdf5.expandingwindow.R'
+    'write_to_hdf5.modellist.R'
