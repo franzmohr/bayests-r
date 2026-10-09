@@ -10,7 +10,14 @@
 #'   \item{Seeds}{\code{.check_seed(seed)} checks and converts a seed,
 #'   \code{.draw_model_seed()} draws one from R's generator and
 #'   \code{.offset_seed(seed, n)} gives the seed of the \code{n}-th model of a
-#'   list numbered from \code{seed}.}
+#'   list numbered from \code{seed}. \code{.with_model_seed(seed, expr)}
+#'   evaluates \code{expr} with R's generator set to \code{seed}, with R's
+#'   default kinds, and puts it back afterwards, and as it stands for a
+#'   \code{NULL} seed. \code{.stage_seed(seed, stage)} is the seed of a stage of
+#'   the simulation after the coefficients -- \code{"forecast"},
+#'   \code{"predictive"} or \code{"structural"} -- derived from a model's seed,
+#'   and \code{.with_stage_seed(object, stage, expr)} evaluates \code{expr} with
+#'   that of \code{object}.}
 #'   \item{Draws}{\code{.draws_matrix(draws)} is an 'mcmc' object as a plain
 #'   matrix with its dimnames.}
 #'   \item{Writing model files}{\code{.hdf5_write_model(filename, group,
@@ -36,9 +43,10 @@
 #' }
 #'
 #' @name bayests-developer
-#' @aliases draw_error_bars forecast_plot_series .check_max_groups .limit_fevd_groups .check_seed .draw_model_seed .offset_seed .draws_matrix .hdf5_write_model .hdf5_group .hdf5_write .hdf5_write_attr .hdf5_draws_attrs .hdf5_series_attrs .hdf5_read_matrix .hdf5_read_value .hdf5_restore_class .read_posterior_block .log_mean_exp .nse_log_mean_exp .lpl_entry .loo_data_frame .waic_data_frame
+#' @aliases draw_error_bars forecast_plot_series .check_max_groups .limit_fevd_groups .check_seed .draw_model_seed .offset_seed .with_model_seed .stage_seed .with_stage_seed .draws_matrix .hdf5_write_model .hdf5_group .hdf5_write .hdf5_write_attr .hdf5_draws_attrs .hdf5_series_attrs .hdf5_read_matrix .hdf5_read_value .hdf5_restore_class .read_posterior_block .log_mean_exp .nse_log_mean_exp .lpl_entry .loo_data_frame .waic_data_frame
 #' @keywords internal
 #' @rawNamespace export(.check_seed, .draw_model_seed, .offset_seed, .draws_matrix)
+#' @rawNamespace export(.with_model_seed, .stage_seed, .with_stage_seed)
 #' @rawNamespace export(.hdf5_write_model, .hdf5_group, .hdf5_write, .hdf5_write_attr)
 #' @rawNamespace export(.hdf5_draws_attrs, .hdf5_series_attrs)
 #' @rawNamespace export(.hdf5_read_matrix, .hdf5_read_value, .hdf5_restore_class)

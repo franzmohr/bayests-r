@@ -9,6 +9,9 @@
 \alias{.check_seed}
 \alias{.draw_model_seed}
 \alias{.offset_seed}
+\alias{.with_model_seed}
+\alias{.stage_seed}
+\alias{.with_stage_seed}
 \alias{.draws_matrix}
 \alias{.hdf5_write_model}
 \alias{.hdf5_group}
@@ -37,7 +40,14 @@ with the needs of the model packages.
   \item{Seeds}{\code{.check_seed(seed)} checks and converts a seed,
   \code{.draw_model_seed()} draws one from R's generator and
   \code{.offset_seed(seed, n)} gives the seed of the \code{n}-th model of a
-  list numbered from \code{seed}.}
+  list numbered from \code{seed}. \code{.with_model_seed(seed, expr)}
+  evaluates \code{expr} with R's generator set to \code{seed}, with R's
+  default kinds, and puts it back afterwards, and as it stands for a
+  \code{NULL} seed. \code{.stage_seed(seed, stage)} is the seed of a stage of
+  the simulation after the coefficients -- \code{"forecast"},
+  \code{"predictive"} or \code{"structural"} -- derived from a model's seed,
+  and \code{.with_stage_seed(object, stage, expr)} evaluates \code{expr} with
+  that of \code{object}.}
   \item{Draws}{\code{.draws_matrix(draws)} is an 'mcmc' object as a plain
   matrix with its dimnames.}
   \item{Writing model files}{\code{.hdf5_write_model(filename, group,
