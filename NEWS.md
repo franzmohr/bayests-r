@@ -1,4 +1,4 @@
-# bayests 0.0.0.9000
+# bayests 0.0.0.9001
 
 * **The shared R layer of bvartools, dfmtools and ucmtools, taken out of
   bvartools 1.0.0.** 180 functions moved: the generics of the workflow, the
