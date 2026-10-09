@@ -1,6 +1,6 @@
 Package: bayests
 Title: Model Files, Model Lists and Model Comparison for 'BayesTS' Samplers
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person(c("Franz", "X."), "Mohr", email = "franz.x.mohr@outlook.com", role = c("aut","cre","cph"), comment = c(ORCID = "0009-0003-8890-7781"))
 Description: The infrastructure shared by the R packages that run the samplers
     of the 'BayesTS' library, such as 'bvartools' and 'dfmtools': the generic
