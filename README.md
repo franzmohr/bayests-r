@@ -1,5 +1,15 @@
 # bayests
 
+[![CRAN status](https://www.r-pkg.org/badges/version/bayests)](https://cran.r-project.org/package=bayests)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/bayests)](https://cran.r-project.org/package=bayests)
+[![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/bayests)](https://cran.r-project.org/package=bayests)
+[![R-CMD-check](https://github.com/franzmohr/bayests-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/franzmohr/bayests-r/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/franzmohr/bayests-r/graph/badge.svg)](https://app.codecov.io/gh/franzmohr/bayests-r)
+[![License: GPL (\>= 2)](https://img.shields.io/badge/license-GPL%20%28%3E%3D%202%29-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/franzmohr)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/franzmohr)
+
 The R infrastructure shared by the packages that run the samplers of the
 [BayesTS](https://github.com/franzmohr/BayesTS) library:
 
