@@ -57,10 +57,15 @@
 #' stored <- read_model_folder(folder)
 #' stored <- add_priors(stored, coef = list(v_i = 1),
 #'                      sigma = list(df = 3, scale = 1))
+#'
+#' # Each step reads and writes every file in the folder, so the rest are left
+#' # out of the timed run of the examples.
+#' \donttest{
 #' stored <- add_initial_values(stored)
 #' stored <- add_seed(stored, 20260919)
 #' stored <- add_posterior_coefficients(stored)
 #' stored <- add_posterior_loglik(stored)
+#' }
 #'
 #' @name folder_steps
 #' @family model comparison
