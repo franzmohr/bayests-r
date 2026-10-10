@@ -3,7 +3,8 @@ Title: Model Files, Model Lists and Model Comparison for 'BayesTS' Samplers
 Version: 0.1.0
 Authors@R: person(c("Franz", "X."), "Mohr", email = "franz.x.mohr@outlook.com", role = c("aut","cre","cph"), comment = c(ORCID = "0009-0003-8890-7781"))
 Description: The infrastructure shared by the R packages that run the samplers
-    of the 'BayesTS' library, such as 'bvartools' and 'dfmtools': the generic
+    of the 'BayesTS' library (Mohr 2026) <doi:10.5281/zenodo.22722531>,
+    such as 'bvartools': the generic
     functions of their model workflow, reading and writing model files in the
     'BayesTS' 'HDF5' layout, lists of models and expanding windows, running
     models through the 'BayesTS' command line, and comparing models. The package
