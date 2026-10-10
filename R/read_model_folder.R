@@ -31,7 +31,7 @@
 #' \code{manifest}, a data frame with the columns \code{model}, \code{file},
 #' \code{group} and the specification of each model.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' data("e1")

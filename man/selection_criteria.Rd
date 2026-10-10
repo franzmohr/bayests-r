@@ -121,8 +121,8 @@ periods realised before it. They are the same quantity computed two ways and
 are summarised by the same code, so the same densities give the same number.
 
 All criteria require that the models that are compared were estimated on the
-same observations. \code{\link[bvartools]{create_bvarmodel}} and
-\code{\link[bvartools]{create_bvecmodel}} ensure this for a vector of lag orders by
+same observations. \code{create_bvarmodel} (\pkg{bvartools}) and
+\code{create_bvecmodel} (\pkg{bvartools}) ensure this for a vector of lag orders by
 trimming the data by the maximum lag, and \code{\link{align_model_obs}}
 restricts models that were created separately to their common sample.
 }
@@ -148,9 +148,9 @@ Zhang, J., & Stephens, M. A. (2009). A new and efficient estimation method for t
 Pareto distribution. \emph{Technometrics, 51}(3), 316--325. \doi{10.1198/tech.2009.08017}
 }
 \seealso{
-Methods: \code{\link[bvartools]{selection_criteria.bvarmodel}},
-\code{\link[bvartools]{selection_criteria.bvecmodel}},
+Methods: \code{selection_criteria.bvarmodel} (\pkg{bvartools}),
+\code{selection_criteria.bvecmodel} (\pkg{bvartools}),
 \code{\link{selection_criteria.expandingwindow}},
-\code{\link[bvartools]{selection_criteria.externalforecast}},
+\code{selection_criteria.externalforecast} (\pkg{bvartools}),
 \code{\link{selection_criteria.modellist}}.
 }

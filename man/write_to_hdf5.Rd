@@ -27,8 +27,8 @@ larger, since that is about the disk space the files will need. See
 \code{\link{expected_model_size}}.
 }
 \seealso{
-Methods: \code{\link[bvartools]{write_to_hdf5.bvarmodel}},
-\code{\link[bvartools]{write_to_hdf5.bvecmodel}},
+Methods: \code{write_to_hdf5.bvarmodel} (\pkg{bvartools}),
+\code{write_to_hdf5.bvecmodel} (\pkg{bvartools}),
 \code{\link{write_to_hdf5.expandingwindow}},
 \code{\link{write_to_hdf5.modellist}}.
 }

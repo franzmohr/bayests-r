@@ -8,10 +8,10 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{add_posterior_loglik.bvarmodel}},
-#' \code{\link[bvartools]{add_posterior_loglik.bvecmodel}},
+#' @seealso Methods: \code{add_posterior_loglik.bvarmodel} (\pkg{bvartools}),
+#' \code{add_posterior_loglik.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{add_posterior_loglik.expandingwindow}},
-#' \code{\link[bvartools:create_external_forecast]{add_posterior_loglik.externalforecast}},
+#' \code{add_posterior_loglik.externalforecast} (\pkg{bvartools}),
 #' \code{\link{add_posterior_loglik.modellist}}.
 #'
 #' @export

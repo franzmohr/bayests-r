@@ -8,8 +8,8 @@ use_expanding_window(object, ...)
 }
 \arguments{
 \item{object}{an object containing model specifications and input data.
-Usually, the output of a call to  \code{\link[bvartools]{create_bvarmodel}} or
-\code{\link[bvartools]{create_bvecmodel}}.}
+Usually, the output of a call to  \code{create_bvarmodel} (\pkg{bvartools}) or
+\code{create_bvecmodel} (\pkg{bvartools}).}
 
 \item{...}{arguments passed forward to method.}
 }
@@ -21,7 +21,7 @@ as described on the pages of the methods.
 Creates objects for expanding window posterior simulation.
 }
 \seealso{
-Methods: \code{\link[bvartools]{use_expanding_window.bvarmodel}},
-\code{\link[bvartools]{use_expanding_window.bvecmodel}},
+Methods: \code{use_expanding_window.bvarmodel} (\pkg{bvartools}),
+\code{use_expanding_window.bvecmodel} (\pkg{bvartools}),
 \code{\link{use_expanding_window.modellist}}.
 }

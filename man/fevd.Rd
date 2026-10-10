@@ -19,5 +19,5 @@ as described on the pages of the methods.
 A generic function used to calculate forecast error variance decompositions.
 }
 \seealso{
-Methods: \code{\link[bvartools]{fevd.bvarmodel}}.
+Methods: \code{fevd.bvarmodel} (\pkg{bvartools}).
 }

@@ -38,8 +38,8 @@ write. A package that adds a model class gets both warnings by adding a method
 to this generic.
 }
 \seealso{
-Methods: \code{\link[bvartools]{expected_model_size.bvarmodel}},
-\code{\link[bvartools:expected_model_size.bvarmodel]{expected_model_size.bvecmodel}},
+Methods: \code{expected_model_size.bvarmodel} (\pkg{bvartools}),
+\code{expected_model_size.bvecmodel} (\pkg{bvartools}),
 \code{\link{expected_model_size.expandingwindow}},
 \code{\link{expected_model_size.modellist}}.
 }

@@ -90,7 +90,7 @@ plotted over the periods they share with the baseline, and a model without an
 \code{LPL} entry is left out with a warning.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 data("us_macrodata")
@@ -120,6 +120,6 @@ plot_predictive_loglik(criteria, baseline = 1)
 \seealso{
 \code{\link{selection_criteria}} for the sum and its band,
 \code{\link{add_predictive_loglik}} for the draws it is computed from, and
-\code{\link[bvartools]{plot_forecast_errors_by_period}} for the same question asked of
+\code{plot_forecast_errors_by_period} (\pkg{bvartools}) for the same question asked of
 forecast errors.
 }

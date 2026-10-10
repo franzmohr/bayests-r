@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{object}{a list of class 'modellist', usually, the output of a call
-to \code{\link[bvartools]{create_bvarmodel}} or \code{\link[bvartools]{create_bvecmodel}}.}
+to \code{create_bvarmodel} (\pkg{bvartools}) or \code{create_bvecmodel} (\pkg{bvartools}).}
 
 \item{...}{further arguments passed to or from other methods.}
 }
@@ -21,7 +21,7 @@ Adds prior specifications to a list of models by passing each element to
 the respective method.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

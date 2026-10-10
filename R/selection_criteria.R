@@ -91,8 +91,8 @@
 #' are summarised by the same code, so the same densities give the same number.
 #'
 #' All criteria require that the models that are compared were estimated on the
-#' same observations. \code{\link[bvartools]{create_bvarmodel}} and
-#' \code{\link[bvartools]{create_bvecmodel}} ensure this for a vector of lag orders by
+#' same observations. \code{create_bvarmodel} (\pkg{bvartools}) and
+#' \code{create_bvecmodel} (\pkg{bvartools}) ensure this for a vector of lag orders by
 #' trimming the data by the maximum lag, and \code{\link{align_model_obs}}
 #' restricts models that were created separately to their common sample.
 #'
@@ -121,10 +121,10 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{selection_criteria.bvarmodel}},
-#' \code{\link[bvartools]{selection_criteria.bvecmodel}},
+#' @seealso Methods: \code{selection_criteria.bvarmodel} (\pkg{bvartools}),
+#' \code{selection_criteria.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{selection_criteria.expandingwindow}},
-#' \code{\link[bvartools]{selection_criteria.externalforecast}},
+#' \code{selection_criteria.externalforecast} (\pkg{bvartools}),
 #' \code{\link{selection_criteria.modellist}}.
 #'
 #' @export

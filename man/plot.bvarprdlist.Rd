@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{x}{an object of class 'bvarprdlist', usually, a result of a call to
-\code{\link[bvartools]{predict.modellist}}.}
+\code{predict.modellist} (\pkg{bvartools}).}
 
 \item{n_pre}{number of plotted observations that precede the forecasts.
 If \code{NULL} (default), all available observations will be plotted.}

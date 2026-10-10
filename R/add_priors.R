@@ -11,7 +11,7 @@
 #'
 #' @seealso Methods: \code{\link[bvartools]{add_priors.bvarmodel}},
 #' \code{\link[bvartools]{add_priors.bvecmodel}}, \code{\link{add_priors.expandingwindow}},
-#' \code{\link[bvartools:create_external_forecast]{add_priors.externalforecast}}, \code{\link{add_priors.modellist}}.
+#' \code{add_priors.externalforecast} (\pkg{bvartools}), \code{\link{add_priors.modellist}}.
 #'
 #' @export
 add_priors <- function (object, ...) {

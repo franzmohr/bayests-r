@@ -7,7 +7,7 @@
 \method{plot}{bvarprd}(x, n_pre = NULL, ci = 0.95, ...)
 }
 \arguments{
-\item{x}{an object of class 'bvarprd', usually, a result of a call to \code{\link[bvartools]{predict.bvarmodel}}.}
+\item{x}{an object of class 'bvarprd', usually, a result of a call to \code{predict.bvarmodel} (\pkg{bvartools}).}
 
 \item{n_pre}{number of plotted observations that precede the forecasts. If \code{NULL} (default),
 all available observations will be plotted.}
@@ -25,7 +25,7 @@ plot.
 A plot function for objects of class 'bvarprd'.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

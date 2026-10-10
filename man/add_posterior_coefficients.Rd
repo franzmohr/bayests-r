@@ -24,9 +24,9 @@ draws are complete is compared with \code{options(bayests.size_warning)},
 and a warning is given if it is larger. See \code{\link{expected_model_size}}.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_posterior_coefficients.bvarmodel}},
-\code{\link[bvartools]{add_posterior_coefficients.bvecmodel}},
+Methods: \code{add_posterior_coefficients.bvarmodel} (\pkg{bvartools}),
+\code{add_posterior_coefficients.bvecmodel} (\pkg{bvartools}),
 \code{\link{add_posterior_coefficients.expandingwindow}},
-\code{\link[bvartools:create_external_forecast]{add_posterior_coefficients.externalforecast}},
+\code{add_posterior_coefficients.externalforecast} (\pkg{bvartools}),
 \code{\link{add_posterior_coefficients.modellist}}.
 }

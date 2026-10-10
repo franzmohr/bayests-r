@@ -19,5 +19,5 @@ as described on the pages of the methods.
 A generic function used to calculate impulse response functions.
 }
 \seealso{
-Methods: \code{\link[bvartools]{irf.bvarmodel}}.
+Methods: \code{irf.bvarmodel} (\pkg{bvartools}).
 }

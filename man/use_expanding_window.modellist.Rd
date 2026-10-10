@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{a list of objects containing model specifications and input data.
 Usually, the output of a call to a model creation function such as
-\code{\link[bvartools]{create_bvarmodel}} or \code{\link[bvartools]{create_bvecmodel}}.}
+\code{create_bvarmodel} (\pkg{bvartools}) or \code{create_bvecmodel} (\pkg{bvartools}).}
 
 \item{start}{the start period of the prediction of the first iteration of the
 expanding window approach.}
@@ -24,7 +24,7 @@ A list of class 'modellist', which consists of objects of class
 Creates objects for expanding window posterior simulation.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 data("us_macrodata")

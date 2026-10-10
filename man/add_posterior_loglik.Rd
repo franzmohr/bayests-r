@@ -19,9 +19,9 @@ as described on the pages of the methods.
 Generic function that calculates the posterior log-likelihoods of a model.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_posterior_loglik.bvarmodel}},
-\code{\link[bvartools]{add_posterior_loglik.bvecmodel}},
+Methods: \code{add_posterior_loglik.bvarmodel} (\pkg{bvartools}),
+\code{add_posterior_loglik.bvecmodel} (\pkg{bvartools}),
 \code{\link{add_posterior_loglik.expandingwindow}},
-\code{\link[bvartools:create_external_forecast]{add_posterior_loglik.externalforecast}},
+\code{add_posterior_loglik.externalforecast} (\pkg{bvartools}),
 \code{\link{add_posterior_loglik.modellist}}.
 }

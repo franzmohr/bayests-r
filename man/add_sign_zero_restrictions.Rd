@@ -29,7 +29,7 @@ the impulse responses they produce and by responses that are restricted to
 be zero.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_sign_zero_restrictions.bvarmodel}},
+Methods: \code{add_sign_zero_restrictions.bvarmodel} (\pkg{bvartools}),
 \code{\link{add_sign_zero_restrictions.expandingwindow}},
 \code{\link{add_sign_zero_restrictions.modellist}}.
 }

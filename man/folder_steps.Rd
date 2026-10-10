@@ -84,7 +84,7 @@ Bayes factors for time variation of every model of the folder, which is how a
 grid of time varying models is asked whether its coefficients move at all.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 data("e1")

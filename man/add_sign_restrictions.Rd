@@ -28,7 +28,7 @@ A generic function used to identify the shocks of a model by the signs of
 the impulse responses they produce.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_sign_restrictions.bvarmodel}},
+Methods: \code{add_sign_restrictions.bvarmodel} (\pkg{bvartools}),
 \code{\link{add_sign_restrictions.expandingwindow}},
 \code{\link{add_sign_restrictions.modellist}}.
 }

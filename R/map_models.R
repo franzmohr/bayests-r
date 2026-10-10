@@ -63,7 +63,7 @@
 #' brought up to date, invisibly. With \code{write = FALSE}, a named list of
 #' what \code{f} returned, one element per model.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' data("e1")

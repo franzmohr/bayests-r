@@ -9,10 +9,10 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{add_forecast_input.bvarmodel}},
-#' \code{\link[bvartools]{add_forecast_input.bvecmodel}},
+#' @seealso Methods: \code{add_forecast_input.bvarmodel} (\pkg{bvartools}),
+#' \code{add_forecast_input.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{add_forecast_input.expandingwindow}},
-#' \code{\link[bvartools:create_external_forecast]{add_forecast_input.externalforecast}},
+#' \code{add_forecast_input.externalforecast} (\pkg{bvartools}),
 #' \code{\link{add_forecast_input.modellist}}.
 #'
 #' @export

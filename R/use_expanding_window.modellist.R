@@ -4,7 +4,7 @@
 #' 
 #' @param object a list of objects containing model specifications and input data.
 #' Usually, the output of a call to a model creation function such as
-#' \code{\link[bvartools]{create_bvarmodel}} or \code{\link[bvartools]{create_bvecmodel}}.
+#' \code{create_bvarmodel} (\pkg{bvartools}) or \code{create_bvecmodel} (\pkg{bvartools}).
 #' @param start the start period of the prediction of the first iteration of the
 #' expanding window approach.
 #' @param ... arguments passed forward to method.
@@ -12,7 +12,7 @@
 #' @return A list of class 'modellist', which consists of objects of class
 #' 'expandingwindow'.
 #' 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' data("us_macrodata")

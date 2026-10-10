@@ -195,7 +195,7 @@
 #' model. A model at the root of its file is reported as \code{""}, which is the
 #' value \code{\link{read_model_from_hdf5}} takes for it.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' # Load data

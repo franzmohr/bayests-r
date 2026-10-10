@@ -20,9 +20,9 @@ A generic function used to generate initial values of an MCMC chain. The
 function invokes particular methods which depend on the class of the first argument.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_initial_values.bvarmodel}},
-\code{\link[bvartools]{add_initial_values.bvecmodel}},
+Methods: \code{add_initial_values.bvarmodel} (\pkg{bvartools}),
+\code{add_initial_values.bvecmodel} (\pkg{bvartools}),
 \code{\link{add_initial_values.expandingwindow}},
-\code{\link[bvartools:create_external_forecast]{add_initial_values.externalforecast}},
+\code{add_initial_values.externalforecast} (\pkg{bvartools}),
 \code{\link{add_initial_values.modellist}}.
 }
