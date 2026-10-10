@@ -6,7 +6,7 @@
 \alias{bayests-package}
 \title{bayests: Model Files, Model Lists and Model Comparison for 'BayesTS' Samplers}
 \description{
-The infrastructure shared by the R packages that run the samplers of the 'BayesTS' library, such as 'bvartools' and 'dfmtools': the generic functions of their model workflow, reading and writing model files in the 'BayesTS' 'HDF5' layout, lists of models and expanding windows, running models through the 'BayesTS' command line, and comparing models by information criteria, Pareto smoothed importance sampling leave-one-out cross-validation (Vehtari, Gelman and Gabry 2017) \doi{10.1007/s11222-016-9696-4} and predictive likelihoods. The package estimates no model of its own.
+The infrastructure shared by the R packages that run the samplers of the 'BayesTS' library, such as 'bvartools' and 'dfmtools': the generic functions of their model workflow, reading and writing model files in the 'BayesTS' 'HDF5' layout, lists of models and expanding windows, running models through the 'BayesTS' command line, and comparing models. The package estimates no model of its own.
 }
 \section{What the package is for}{
 
