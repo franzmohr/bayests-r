@@ -8,9 +8,9 @@
 #' @param ... arguments passed forward to method.
 #' 
 #' @return The object in \code{object} with forecast errors added to each of its models, as
-#' described in \code{\link[bvartools]{add_forecast_errors.bvarmodel}}.
+#' described in \code{add_forecast_errors.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

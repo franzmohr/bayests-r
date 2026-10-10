@@ -2,14 +2,14 @@
 #' 
 #' A plot function for objects of class 'bvarprd'.
 #' 
-#' @param x an object of class 'bvarprd', usually, a result of a call to \code{\link[bvartools]{predict.bvarmodel}}.
+#' @param x an object of class 'bvarprd', usually, a result of a call to \code{predict.bvarmodel} (\pkg{bvartools}).
 #' @param n_pre number of plotted observations that precede the forecasts. If \code{NULL} (default),
 #' all available observations will be plotted.
 #' @param ci interval used to calculate the credible bands of the forecasts.
 #' @param ... further graphical parameters. Arguments \code{main}, \code{ylab},
 #' \code{lty} and \code{plot.type} overwrite the defaults of the function.
 #' 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

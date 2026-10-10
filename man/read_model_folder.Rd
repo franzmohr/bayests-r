@@ -62,7 +62,7 @@ and the draws never pass through R. Files are named once however many models
 they hold, since BayesTS works through every model in a file it is given.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 data("e1")

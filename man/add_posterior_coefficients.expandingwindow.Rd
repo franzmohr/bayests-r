@@ -17,7 +17,7 @@ See section 'Parallel simulation'.}
 }
 \value{
 The object in \code{object} with posterior draws added to each of its models, as
-described in \code{\link[bvartools]{add_posterior_coefficients.bvarmodel}}.
+described in \code{add_posterior_coefficients.bvarmodel} (\pkg{bvartools}).
 }
 \description{
 Forwards model input to posterior simulation functions.
@@ -69,7 +69,7 @@ models that take longer than that to simulate.
 }
 
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

@@ -41,7 +41,7 @@
 #' @return A named list of class 'modellist', or of class 'expandingwindow' if
 #' the models say they belong to one.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' # Load data

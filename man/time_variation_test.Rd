@@ -27,8 +27,8 @@ Generic function used to compute Bayes factors for time variation in the
 coefficients and volatilities of a model with time varying parameters.
 }
 \seealso{
-Methods: \code{\link[bvartools]{time_variation_test.bvarmodel}},
-\code{\link[bvartools:time_variation_test.bvarmodel]{time_variation_test.bvecmodel}}, and for a list of models, the
+Methods: \code{time_variation_test.bvarmodel} (\pkg{bvartools}),
+\code{time_variation_test.bvecmodel} (\pkg{bvartools}), and for a list of models, the
 windows of an expanding window comparison or a folder of stored models,
 \code{\link{time_variation_test.modellist}},
 \code{\link{time_variation_test.expandingwindow}} and

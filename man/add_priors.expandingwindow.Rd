@@ -21,7 +21,7 @@ Adds prior specifications to a list of models by passing each element to
 the respective method.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 data("us_macrodata")

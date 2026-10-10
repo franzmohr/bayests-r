@@ -82,7 +82,7 @@
 #' assessing convergence of MCMC. \emph{Bayesian Analysis, 16}(2), 667--718.
 #' \doi{10.1214/20-BA1221}
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' data("e1")
 #' e1 <- diff(log(e1)) * 100

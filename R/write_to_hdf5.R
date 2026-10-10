@@ -15,8 +15,8 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{write_to_hdf5.bvarmodel}},
-#' \code{\link[bvartools]{write_to_hdf5.bvecmodel}},
+#' @seealso Methods: \code{write_to_hdf5.bvarmodel} (\pkg{bvartools}),
+#' \code{write_to_hdf5.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{write_to_hdf5.expandingwindow}},
 #' \code{\link{write_to_hdf5.modellist}}.
 #'

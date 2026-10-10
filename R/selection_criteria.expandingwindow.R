@@ -23,7 +23,7 @@
 #'
 #' @return An object of class 'selcrit'.
 #' 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

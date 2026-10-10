@@ -7,9 +7,9 @@
 #' @param ... further arguments passed to or from other methods.
 #' 
 #' @return The object in \code{object} with initial values added to each of its models, as
-#' described in \code{\link[bvartools]{add_initial_values.bvarmodel}}.
+#' described in \code{add_initial_values.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

@@ -9,7 +9,7 @@
 #' See section 'Parallel simulation'.
 #' 
 #' @return The object in \code{object} with posterior draws added to each of its models, as
-#' described in \code{\link[bvartools]{add_posterior_coefficients.bvarmodel}}.
+#' described in \code{add_posterior_coefficients.bvarmodel} (\pkg{bvartools}).
 #'
 #' @section Parallel simulation:
 #' With \code{cores} above 1 the models are simulated on a cluster of that many
@@ -55,7 +55,7 @@
 #' Starting the workers takes a moment, so a cluster pays off for lists of
 #' models that take longer than that to simulate.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data 

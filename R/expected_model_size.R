@@ -19,8 +19,8 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{expected_model_size.bvarmodel}},
-#' \code{\link[bvartools:expected_model_size.bvarmodel]{expected_model_size.bvecmodel}},
+#' @seealso Methods: \code{expected_model_size.bvarmodel} (\pkg{bvartools}),
+#' \code{expected_model_size.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{expected_model_size.expandingwindow}},
 #' \code{\link{expected_model_size.modellist}}.
 #'

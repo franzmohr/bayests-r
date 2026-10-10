@@ -9,8 +9,8 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{time_variation_test.bvarmodel}},
-#' \code{\link[bvartools:time_variation_test.bvarmodel]{time_variation_test.bvecmodel}}, and for a list of models, the
+#' @seealso Methods: \code{time_variation_test.bvarmodel} (\pkg{bvartools}),
+#' \code{time_variation_test.bvecmodel} (\pkg{bvartools}), and for a list of models, the
 #' windows of an expanding window comparison or a folder of stored models,
 #' \code{\link{time_variation_test.modellist}},
 #' \code{\link{time_variation_test.expandingwindow}} and

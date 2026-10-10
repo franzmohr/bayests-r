@@ -52,7 +52,7 @@ not comparable with \code{"LL"}, which conditions on the parameters where
 this integrates them out.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 # Load data
 data("e1")

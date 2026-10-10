@@ -6,13 +6,13 @@
 #' @param object an object of class 'modellist' containing objects that can
 #' be passed on to their respective \code{add_forecast_input} method.
 #' @param ... arguments passed forward to method. Argument \code{y_start} of
-#' \code{\link[bvartools]{add_forecast_input.bvarmodel}} is given to every model of the list, so it
+#' \code{add_forecast_input.bvarmodel} (\pkg{bvartools}) is given to every model of the list, so it
 #' has to cover the largest lag order among them.
 #'
 #' @return The object in \code{object} with forecast input added to each of its models, as
-#' described in \code{\link[bvartools]{add_forecast_input.bvarmodel}}.
+#' described in \code{add_forecast_input.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

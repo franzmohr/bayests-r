@@ -24,7 +24,7 @@ as described on the pages of the methods.
 Generic function used to calculate forecast errors and add them to a model object.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_forecast_errors.bvarmodel}},
+Methods: \code{add_forecast_errors.bvarmodel} (\pkg{bvartools}),
 \code{\link{add_forecast_errors.expandingwindow}},
 \code{\link{add_forecast_errors.modellist}}.
 }

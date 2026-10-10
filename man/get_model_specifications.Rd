@@ -34,7 +34,7 @@ are returned depends on the class of argument \code{object}:
 A generic function used to obtain the model specifications of a model.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

@@ -9,9 +9,9 @@
 #' @inheritSection add_posterior_coefficients.modellist Parallel simulation
 #' 
 #' @return The object in \code{object} with log-likelihood draws added to each of its models, as
-#' described in \code{\link[bvartools]{add_posterior_loglik.bvarmodel}}.
+#' described in \code{add_posterior_loglik.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

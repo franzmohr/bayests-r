@@ -6,13 +6,13 @@
 #' @param object an object of class 'expandingwindow' containing objects that can
 #' be passed on to their respective \code{add_forecast_input} method.
 #' @param ... arguments passed forward to method. Argument \code{y_start} of
-#' \code{\link[bvartools]{add_forecast_input.bvarmodel}} is refused, since every window forecasts from
+#' \code{add_forecast_input.bvarmodel} (\pkg{bvartools}) is refused, since every window forecasts from
 #' the end of its own estimation sample.
 #'
 #' @return The object in \code{object} with forecast input added to each of its models, as
-#' described in \code{\link[bvartools]{add_forecast_input.bvarmodel}}.
+#' described in \code{add_forecast_input.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

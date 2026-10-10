@@ -13,14 +13,14 @@
 }
 \value{
 A list of class 'selcritlist' with one object of class 'selcrit' per model, as
-described in \code{\link[bvartools]{selection_criteria.bvarmodel}}, which
+described in \code{selection_criteria.bvarmodel} (\pkg{bvartools}), which
 \code{\link{choose_best_model}} compares.
 }
 \description{
 Calculates model selection criteria for a list of Bayesian models.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

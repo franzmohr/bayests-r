@@ -28,7 +28,7 @@ Calculates the criteria that a pointwise log-likelihood and a scored forecast
 are enough for, whatever the model is.
 }
 \details{
-The criteria of \code{\link[bvartools]{selection_criteria.bvarmodel}} fall into two
+The criteria of \code{selection_criteria.bvarmodel} (\pkg{bvartools}) fall into two
 groups. \code{AIC}, \code{BIC} and \code{HQ} charge a model for its size, so
 they need a count of its free parameters, which is a property of the model and
 cannot be read off its draws. \code{FE}, \code{AFE} and \code{RSFE} need the
@@ -51,7 +51,7 @@ horizon realised.
 The periods of the \code{"terms"} attribute of \code{LPL} are numbered from
 one rather than dated: this method knows nothing of where a model keeps its
 sample, so it cannot say when the scored periods were. A class that can say
-should write its own method, as \code{\link[bvartools]{selection_criteria.bvarmodel}}
+should write its own method, as \code{selection_criteria.bvarmodel} (\pkg{bvartools})
 does.
 }
 \examples{

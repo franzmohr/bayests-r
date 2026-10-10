@@ -36,7 +36,7 @@ posterior draw of window \eqn{i}, given only the data before it, and stores
 the draws in element \code{predictive} of the window, together with the
 period of the observation. How a draw is carried one period forward depends
 on the model, which is why the method for an expanding window comes with the
-package of its models: \code{\link[bvartools]{add_predictive_loglik.expandingwindow}}
+package of its models: \code{add_predictive_loglik.expandingwindow} (\pkg{bvartools})
 for the VAR and VEC models of \pkg{bvartools}. The method for a 'modellist'
 applies it to every window exercise of the list.
 }

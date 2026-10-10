@@ -9,8 +9,8 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{prepare_forecast_input.bvarmodel}},
-#' \code{\link[bvartools]{prepare_forecast_input.bvecmodel}}.
+#' @seealso Methods: \code{prepare_forecast_input.bvarmodel} (\pkg{bvartools}),
+#' \code{prepare_forecast_input.bvecmodel} (\pkg{bvartools}).
 #'
 #' @export
 prepare_forecast_input <- function (object, ...) {

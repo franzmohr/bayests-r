@@ -26,7 +26,7 @@
 #' \code{group}, \code{model}, \code{data}, \code{priors} and \code{draws}, the
 #' number of draws in the file.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' # Load data
@@ -131,7 +131,7 @@ print.modelfile <- function(x, ...) {
 #'
 #' @return A list with one element per piece of the chain.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' data("e1")

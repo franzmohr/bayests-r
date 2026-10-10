@@ -12,10 +12,10 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
-#' @seealso Methods: \code{\link[bvartools]{add_posterior_coefficients.bvarmodel}},
-#' \code{\link[bvartools]{add_posterior_coefficients.bvecmodel}},
+#' @seealso Methods: \code{add_posterior_coefficients.bvarmodel} (\pkg{bvartools}),
+#' \code{add_posterior_coefficients.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{add_posterior_coefficients.expandingwindow}},
-#' \code{\link[bvartools:create_external_forecast]{add_posterior_coefficients.externalforecast}},
+#' \code{add_posterior_coefficients.externalforecast} (\pkg{bvartools}),
 #' \code{\link{add_posterior_coefficients.modellist}}.
 #'
 #' @export

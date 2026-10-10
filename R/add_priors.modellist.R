@@ -4,13 +4,13 @@
 #' the respective method.
 #'
 #' @param object a list of class 'modellist', usually, the output of a call
-#' to \code{\link[bvartools]{create_bvarmodel}} or \code{\link[bvartools]{create_bvecmodel}}.
+#' to \code{create_bvarmodel} (\pkg{bvartools}) or \code{create_bvecmodel} (\pkg{bvartools}).
 #' @param ... further arguments passed to or from other methods.
 #' 
 #' @return The object in \code{object} with priors added to each of its models, as
 #' described in \code{\link[bvartools]{add_priors.bvarmodel}}.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

@@ -22,7 +22,7 @@ subfolder of \code{folder} created for the exercise.
 Exports the content of an object of class 'expandingwindow' to multiple HDF5 file.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

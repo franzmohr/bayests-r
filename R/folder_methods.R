@@ -40,7 +40,7 @@
 #'
 #' @return The object in \code{object}, with its manifest brought up to date.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' data("e1")

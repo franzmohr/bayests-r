@@ -6,10 +6,10 @@
 #' @param ... further arguments passed to or from other methods.
 #' 
 #' @return A list of class 'selcritlist' with one object of class 'selcrit' per model, as
-#' described in \code{\link[bvartools]{selection_criteria.bvarmodel}}, which
+#' described in \code{selection_criteria.bvarmodel} (\pkg{bvartools}), which
 #' \code{\link{choose_best_model}} compares.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

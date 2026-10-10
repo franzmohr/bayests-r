@@ -23,7 +23,7 @@
 #'   \item{varsel}{the used variable selection algorithm.}
 #' }
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' # Load data

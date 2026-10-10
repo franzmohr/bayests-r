@@ -55,7 +55,7 @@
 #' @return \code{x}, invisibly. The function is called for its side effect, the
 #' plot.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #'
 #' data("us_macrodata")
@@ -83,7 +83,7 @@
 #'
 #' @seealso \code{\link{selection_criteria}} for the sum and its band,
 #' \code{\link{add_predictive_loglik}} for the draws it is computed from, and
-#' \code{\link[bvartools]{plot_forecast_errors_by_period}} for the same question asked of
+#' \code{plot_forecast_errors_by_period} (\pkg{bvartools}) for the same question asked of
 #' forecast errors.
 #'
 #' @export

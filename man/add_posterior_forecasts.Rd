@@ -19,8 +19,8 @@ as described on the pages of the methods.
 Generic function that calculates and adds forecasts.
 }
 \seealso{
-Methods: \code{\link[bvartools]{add_posterior_forecasts.bvarmodel}},
+Methods: \code{add_posterior_forecasts.bvarmodel} (\pkg{bvartools}),
 \code{\link{add_posterior_forecasts.expandingwindow}},
-\code{\link[bvartools:create_external_forecast]{add_posterior_forecasts.externalforecast}},
+\code{add_posterior_forecasts.externalforecast} (\pkg{bvartools}),
 \code{\link{add_posterior_forecasts.modellist}}.
 }

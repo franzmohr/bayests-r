@@ -40,7 +40,7 @@
 #' in argument \code{object}. Where several models attain the best value
 #' exactly, the positions of all of them, in increasing order.
 #' 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' # Load data
 #' data("e1")

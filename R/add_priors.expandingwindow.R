@@ -10,7 +10,7 @@
 #' @return The object in \code{object} with priors added to each of its models, as
 #' described in \code{\link[bvartools]{add_priors.bvarmodel}}.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE)
+#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' data("us_macrodata")

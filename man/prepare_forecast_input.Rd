@@ -20,6 +20,6 @@ Generic function that generates data matrices serving as data input for downstre
 forecasting functions.
 }
 \seealso{
-Methods: \code{\link[bvartools]{prepare_forecast_input.bvarmodel}},
-\code{\link[bvartools]{prepare_forecast_input.bvecmodel}}.
+Methods: \code{prepare_forecast_input.bvarmodel} (\pkg{bvartools}),
+\code{prepare_forecast_input.bvecmodel} (\pkg{bvartools}).
 }

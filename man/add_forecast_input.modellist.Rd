@@ -11,19 +11,19 @@
 be passed on to their respective \code{add_forecast_input} method.}
 
 \item{...}{arguments passed forward to method. Argument \code{y_start} of
-\code{\link[bvartools]{add_forecast_input.bvarmodel}} is given to every model of the list, so it
+\code{add_forecast_input.bvarmodel} (\pkg{bvartools}) is given to every model of the list, so it
 has to cover the largest lag order among them.}
 }
 \value{
 The object in \code{object} with forecast input added to each of its models, as
-described in \code{\link[bvartools]{add_forecast_input.bvarmodel}}.
+described in \code{add_forecast_input.bvarmodel} (\pkg{bvartools}).
 }
 \description{
 Generates and adds data matrices for forecast simulation to the elements of
 an object of class 'modellist'.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data

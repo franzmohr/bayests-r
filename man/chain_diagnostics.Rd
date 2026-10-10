@@ -83,7 +83,7 @@ The chains start from the same initial values, those of
 starting values would make the comparison more demanding.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 data("e1")
 e1 <- diff(log(e1)) * 100
