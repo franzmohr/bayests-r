@@ -27,6 +27,12 @@ next release (1.0.0) imports it and will be submitted once bayests is on CRAN.
 * Windows 11 x64, R 4.6.1 (ucrt), `R CMD check --as-cran`, twice:
   * with bvartools 0.3.0, the version on CRAN;
   * with the development version of bvartools 1.0.0, which imports bayests.
+* GitHub Actions, `R CMD check` with the dependencies from CRAN, Status: OK on
+  all five:
+  * Ubuntu (x86_64-pc-linux-gnu): R-devel (2026-10-08 r90650), R 4.6.1 and
+    R 4.5.3;
+  * macOS (aarch64-apple-darwin23): R 4.6.1;
+  * Windows (x86_64-w64-mingw32): R 4.6.1 (ucrt).
 
 ## Notes for the reviewer
 
