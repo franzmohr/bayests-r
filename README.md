@@ -8,7 +8,7 @@
 [![License: GPL (\>= 2)](https://img.shields.io/badge/license-GPL%20%28%3E%3D%202%29-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
 
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/franzmohr)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/franzmohr)
+[![Buy me a coffee and tokens](https://img.shields.io/badge/Buy%20me%20a%20coffee%20and%20tokens-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/franzmohr)
 
 The R infrastructure shared by the packages that run the samplers of the
 [BayesTS](https://github.com/franzmohr/BayesTS) library:
