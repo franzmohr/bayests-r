@@ -9,6 +9,8 @@ Description: The infrastructure shared by the R packages that run the samplers
     models through the 'BayesTS' command line, and comparing models. The package
     estimates no model of its own.
 License: GPL (>= 2)
+URL: https://github.com/franzmohr/bayests-r
+BugReports: https://github.com/franzmohr/bayests-r/issues
 Depends:
     R (>= 4.0.0)
 Imports: coda, grDevices, graphics, hdf5r, parallel, posterior (>= 1.7.0), stats, utils
