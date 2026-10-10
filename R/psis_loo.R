@@ -17,8 +17,8 @@
 # count of them is reported rather than hidden.
 #
 # Following Vehtari, Simpson, Gelman, Yao and Gabry (2024), with the tail fit
-# of Zhang and Stephens (2009), and on the deviance scale of the other
-# criteria, so that smaller is better:
+# of Zhang and Stephens (2009) from posterior::gpdfit(), and on the deviance
+# scale of the other criteria, so that smaller is better:
 #
 #   elpd_loo = sum_t log( sum_s w_st p(y_t | theta_s) / sum_s w_st )
 #   p_loo    = lppd - elpd_loo
@@ -30,57 +30,6 @@
     return(x_max)
   }
   x_max + log(sum(exp(x - x_max)))
-}
-
-# Generalised Pareto distribution fitted to the tail of the importance ratios
-# with the empirical Bayes estimator of Zhang and Stephens (2009). A grid of
-# values of the parameter is averaged over with its profile likelihood as the
-# weight rather than maximised over, which is cheaper than maximum likelihood
-# and better behaved in the short tails that a few thousand draws provide.
-.gpd_fit <- function(x) {
-
-  n <- length(x)
-  x <- sort.int(x)
-
-  prior <- 3
-  m <- 30 + floor(sqrt(n))
-  jj <- seq_len(m)
-  # The first quartile sets the scale of the grid
-  xstar <- x[floor(n / 4 + 0.5)]
-  theta <- 1 / x[n] + (1 - sqrt(m / (jj - 0.5))) / prior / xstar
-
-  # Profile log-likelihood of the grid, up to a constant
-  l_theta <- vapply(theta, function(value) {
-    k <- mean(log1p(-value * x))
-    n * (log(-value / k) - k - 1)
-  }, numeric(1))
-
-  weights <- exp(l_theta - .log_sum_exp(l_theta))
-  theta_hat <- sum(theta * weights)
-
-  k <- mean(log1p(-theta_hat * x))
-  sigma <- -k / theta_hat
-
-  # Weakly informative prior on the shape, which pulls the estimate towards
-  # 0.5 and keeps a short tail from producing an extreme value by itself
-  a <- 10
-  k <- k * n / (n + a) + a * 0.5 / (n + a)
-
-  if (is.nan(k)) {
-    k <- Inf
-  }
-
-  list("k" = k, "sigma" = sigma)
-}
-
-.gpd_quantile <- function(p, k, sigma) {
-  if (is.nan(sigma) || sigma <= 0) {
-    return(rep(NaN, length(p)))
-  }
-  if (abs(k) < .Machine$double.eps^0.5) {
-    return(-sigma * log1p(-p))
-  }
-  sigma * expm1(-k * log1p(-p)) / k
 }
 
 # Smoothed and normalised log weights of one period, with the shape parameter
@@ -105,12 +54,21 @@
       cutoff <- ord[["x"]][min(tail_ids) - 1]
       exp_cutoff <- exp(cutoff)
 
-      fit <- .gpd_fit(exp(lw_tail) - exp_cutoff)
+      # The tail fit of Zhang and Stephens (2009), with the weakly informative
+      # prior on the shape that pulls it towards 0.5, as the posterior
+      # package implements it. It returns NA where it cannot fit -- when a
+      # quarter of the tail or more sits at its smallest value -- which is
+      # flagged by an infinite k like the other tails left unsmoothed.
+      fit <- posterior::gpdfit(exp(lw_tail) - exp_cutoff, sort_x = FALSE)
       k_hat <- fit[["k"]]
+      if (is.na(k_hat)) {
+        k_hat <- Inf
+      }
 
       if (is.finite(k_hat)) {
         probs <- (seq_len(tail_len) - 0.5) / tail_len
-        smoothed <- .gpd_quantile(probs, k_hat, fit[["sigma"]]) + exp_cutoff
+        smoothed <- posterior::qgeneralized_pareto(probs, mu = 0, sigma = fit[["sigma"]],
+                                                   k = k_hat) + exp_cutoff
         lw[ord[["ix"]][tail_ids]] <- log(smoothed)
       }
     }

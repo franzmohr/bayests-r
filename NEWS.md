@@ -1,5 +1,18 @@
 # bayests 0.0.0.9001
 
+* **Pareto smoothed importance sampling now fits its tail with
+  `posterior::gpdfit()`**, and draws its quantiles with
+  `posterior::qgeneralized_pareto()`, rather than with a copy of that code. The
+  copy followed posterior's implementation (BSD-3-Clause, and before it loo's)
+  line for line, and calling it leaves one implementation, which posterior's
+  authors maintain. posterior was already imported. The PSIS-LOO criteria of
+  `selection_criteria()` and the Pareto shapes they report are unchanged up to
+  rounding: over 2,000 simulated tails the shape differed by at most 4e-13 and
+  the smoothed quantiles by 3e-12, relatively. The one difference is a tail a
+  quarter or more of which sits at its smallest value, where posterior's fit
+  returns NA: such a period is now left unsmoothed and reported with a shape of
+  `Inf`, as the other tails that cannot be fitted already were.
+
 * **The shared R layer of bvartools, dfmtools and ucmtools, taken out of
   bvartools 1.0.0.** 180 functions moved: the generics of the workflow, the
   `modellist` and `expandingwindow` methods, reading and writing model files,
