@@ -31,6 +31,10 @@
 #' into the object of the package that defines it, which
 #' \code{\link{read_model_from_hdf5}} loads for the purpose.
 #'
+#' @references
+#' Mohr, F. X. (2026). BayesTS: Bayesian time series estimation in C++.
+#' Zenodo. \doi{10.5281/zenodo.22722531}
+#'
 #' @importFrom coda thin
 #' @importFrom stats window
 "_PACKAGE"
