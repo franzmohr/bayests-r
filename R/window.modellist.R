@@ -13,8 +13,10 @@
 #' @method window modellist
 window.modellist <- function(x, start = NULL, end = NULL, ...) {
   
-  for (i in 1:length(x)) {
-    x[[i]] <- stats::window(x = x[[i]], start = start, end = end)
+  # '...' reaches every model, as the method's documentation says it does; it
+  # used to stop here.
+  for (i in seq_along(x)) {
+    x[[i]] <- stats::window(x = x[[i]], start = start, end = end, ...)
   }
   
   return(x)

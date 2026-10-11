@@ -123,7 +123,8 @@ selection_criteria.expandingwindow <- function(object, ci = 0.95, ...){
 
   # In-sample
   if (use_ll) {
-    in_sample <- selection_criteria(last_window, ci = ci)
+    # '...' too: an argument such as 'plugin' was dropped here without a word.
+    in_sample <- selection_criteria(last_window, ci = ci, ...)
     # LML is the one criterion of a discounted model, and was left behind when
     # the list named only the samplers'.
     for (i in c("LL", "LML", "AIC", "BIC", "HQ", "WAIC", "LOOIC")) {
