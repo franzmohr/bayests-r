@@ -6,7 +6,7 @@
 \alias{bayests-package}
 \title{bayests: Model Files, Model Lists and Model Comparison for 'BayesTS' Samplers}
 \description{
-The infrastructure shared by the R packages that run the samplers of the 'BayesTS' library, such as 'bvartools' and 'dfmtools': the generic functions of their model workflow, reading and writing model files in the 'BayesTS' 'HDF5' layout, lists of models and expanding windows, running models through the 'BayesTS' command line, and comparing models. The package estimates no model of its own.
+The infrastructure shared by the R packages that run the samplers of the 'BayesTS' library (Mohr 2026) \doi{10.5281/zenodo.22722531}, such as 'bvartools': the generic functions of their model workflow, reading and writing model files in the 'BayesTS' 'HDF5' layout, lists of models and expanding windows, running models through the 'BayesTS' command line, and comparing models. The package estimates no model of its own.
 }
 \section{What the package is for}{
 
@@ -41,6 +41,18 @@ into the object of the package that defines it, which
 \code{\link{read_model_from_hdf5}} loads for the purpose.
 }
 
+\references{
+Mohr, F. X. (2026). BayesTS: Bayesian time series estimation in C++.
+Zenodo. \doi{10.5281/zenodo.22722531}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/franzmohr/bayests-r}
+  \item Report bugs at \url{https://github.com/franzmohr/bayests-r/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Franz X. Mohr \email{franz.x.mohr@outlook.com} (\href{https://orcid.org/0009-0003-8890-7781}{ORCID}) [copyright holder]
 
