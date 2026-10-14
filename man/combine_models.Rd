@@ -19,20 +19,15 @@ list, in the order in which they were given.
 Convenience function that combines multiple models into one object.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data(e6)
+model_1 <- create_normalmodel(y, variance = 1)
+model_2 <- create_normalmodel(y, variance = 4)
+models <- combine_models(model_1, model_2)
+length(models)
 
-# Create multiple VAR models
-model_1 <- create_bvarmodel(diff(e6), p = 0:2, deterministic = "const")
-
-# Create multiple VEC models
-model_2 <- create_bvecmodel(e6, p = 1, r = 0:1, const = "unrestricted")
-
-# Combine the models in one object
-model <- combine_models(model_1, model_2)
-\dontshow{\}) # examplesIf}
 }
 \concept{model set-up}

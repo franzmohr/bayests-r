@@ -195,23 +195,19 @@
 #' model. A model at the root of its file is reported as \code{""}, which is the
 #' value \code{\link{read_model_from_hdf5}} takes for it.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
 #'
-#' # Load data
-#' data("e1")
-#' train <- diff(log(e1)) * 100
-#'
-#' # Create and store two models in one file
-#' path_to_model <- tempfile(fileext = ".h5")
-#' for (p in 1:2) {
-#'   model <- create_bvarmodel(data = train, p = p, deterministic = "const",
-#'                             iterations = 10, burnin = 10)
-#'   write_to_hdf5(model, filename = path_to_model,
-#'                 group = paste0("/models/", p))
+#' # Two models in one file
+#' file <- tempfile(fileext = ".h5")
+#' for (v in c(1, 4)) {
+#'   model <- create_normalmodel(y, variance = v)
+#'   write_to_hdf5(model, filename = file, group = paste0("/models/variance-", v))
 #' }
-#'
-#' read_model_groups(path_to_model)
+#' read_model_groups(file)
 #'
 #' @export
 read_model_groups <- function(filename, group = "") {

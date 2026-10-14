@@ -22,32 +22,21 @@ member that is itself a collection, one per model in it.
 Exports the content of an object of class 'modellist' to multiple HDF5 file.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
+train <- window(y, end = c(2008, 4))
 
-# Load data
-data("e1")
-train <- diff(log(e1)) * 100
+# Two models that differ in the variance they take as known
+models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+                         create_normalmodel(train, variance = 4, iterations = 200))
+models <- add_priors(models, mean = 0, prior_variance = 10)
 
-# Create model
-model <- create_bvarmodel(data = train,
-                          p = 0:4,
-                          deterministic = "const",
-                          iterations = 10,
-                          burnin = 10)
-# Number of iterations and burnin should be much higher.
+folder <- file.path(tempdir(), "bayests-example-list")
+unlink(folder, recursive = TRUE)
+dir.create(folder)
+write_to_hdf5(models, folder = folder)
+list.files(folder)
 
-# Add priors
-model <- add_priors(model,
-                    coef = list(v_i = 1),
-                    sigma = list(df = 3, scale = 1))
-
-# Add initial values
-model <- add_initial_values(model)
-
-# Save model
-path_to_target_directory <- tempdir()
-write_to_hdf5(model, folder = path_to_target_directory)
-
-\dontshow{\}) # examplesIf}
 }

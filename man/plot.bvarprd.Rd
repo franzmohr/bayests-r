@@ -25,40 +25,20 @@ plot.
 A plot function for objects of class 'bvarprd'.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data("e1")
-e1 <- diff(log(e1)) * 100
-e1 <- window(e1, end = c(1978, 4))
-
-# Generate model data
-model <- create_bvarmodel(e1, p = 2, deterministic = "const",
-                          iterations = 100, burnin = 10)
-# Chosen number of iterations and burnin should be much higher.
-
-# Add prior specifications
-model <- add_priors(model,
-                    coef = list(v_i = 1, v_i_det = 1 / 10),
-                    sigma = list(df = "k", scale = 1))
-
-# Add initial values
+model <- create_normalmodel(window(y, end = c(2008, 4)), iterations = 200)
+model <- add_priors(model, mean = 0, prior_variance = 10)
 model <- add_initial_values(model)
-
-# Obtain posterior draws
 model <- add_posterior_coefficients(model)
-
-# Add the data the forecasts are produced from
-model <- add_forecast_input(model, n_ahead = 10)
-
-# Simulate the forecasts
+model <- add_forecast_input(model, n_ahead = 8)
 model <- add_posterior_forecasts(model)
 
-# Collect them
+# Collect them and plot the last five years with the forecasts
 pred <- predict(model)
+plot(pred, n_pre = 20)
 
-# Plot forecasts
-plot(pred)
-\dontshow{\}) # examplesIf}
 }

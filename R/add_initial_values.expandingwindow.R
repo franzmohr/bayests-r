@@ -10,32 +10,19 @@
 #' @return The object in \code{object} with initial values added to each of its models, as
 #' described in \code{add_initial_values.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
-#' 
-#' data("us_macrodata")
-#' 
-#' # Starting period of the forecasting exercise
-#' start_period <- 2007
-#' 
-#' # AR(1) models as benchmark
-#' model <- create_bvarmodel(data = us_macrodata, p = 1,
-#'                           deterministic = "none",
-#'                           error = "gamma",
-#'                           iterations = 10, burnin = 10)
-#' # Chosen number of iterations and burn-in draws should be much higher.
-#' 
-#' # Obtain objects for expanding window estimation
-#' model <- use_expanding_window(model, start = start_period)
-#' 
-#' # Add priors
-#' model <- add_priors(model,
-#'                     coef = list(v_i = 1, v_i_det = 1 / 10),
-#'                     sigma = list(shape = 3, rate = 1))
-#' 
-#' # Add initial values
-#' model <- add_initial_values(model)
-#' 
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#'
+#' model <- create_normalmodel(y, iterations = 200)
+#'
+#' # One window per forecast origin from 2007Q4 on
+#' windows <- use_expanding_window(model, start = 2008)
+#' windows <- add_priors(windows, mean = 0, prior_variance = 10)
+#' windows <- add_initial_values(windows)
+#'
 #' @export
 add_initial_values.expandingwindow <- function(object, ...){
   

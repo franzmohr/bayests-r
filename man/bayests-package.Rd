@@ -6,7 +6,7 @@
 \alias{bayests-package}
 \title{bayests: Model Files, Model Lists and Model Comparison for 'BayesTS' Samplers}
 \description{
-The infrastructure shared by the R packages that run the samplers of the 'BayesTS' library (Mohr 2026) \doi{10.5281/zenodo.22722531}, such as 'bvartools': the generic functions of their model workflow, reading and writing model files in the 'BayesTS' 'HDF5' layout, lists of models and expanding windows, running models through the 'BayesTS' command line, and comparing models. The package estimates no model of its own.
+The infrastructure shared by the R packages that run the samplers of the 'BayesTS' library (Mohr 2026) \doi{10.5281/zenodo.22722531}, such as 'bvartools': the generic functions of their model workflow, reading and writing model files in the 'BayesTS' 'HDF5' layout, lists of models and expanding windows, running models through the 'BayesTS' command line, and comparing models. Its only model, a conjugate normal model of the mean with known variance, shows the workflow without a model package.
 }
 \section{What the package is for}{
 
@@ -36,8 +36,11 @@ another:
   \code{\link{choose_best_model}} and \code{\link{chain_diagnostics}}.
 }
 
-The package estimates no model of its own. A file of a model class is read
-into the object of the package that defines it, which
+The package estimates no model for analysis. The one model it defines,
+\code{\link{create_normalmodel}}, a normal model of the mean with known
+variance, is there to show the workflow without a model package, and the
+examples of this package run on it. A file of a model class is read into the
+object of the package that defines it, which
 \code{\link{read_model_from_hdf5}} loads for the purpose.
 }
 

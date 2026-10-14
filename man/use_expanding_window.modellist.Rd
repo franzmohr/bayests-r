@@ -24,26 +24,17 @@ A list of class 'modellist', which consists of objects of class
 Creates objects for expanding window posterior simulation.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
+train <- window(y, end = c(2008, 4))
 
-data("us_macrodata")
+# Two models that differ in the variance they take as known
+models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+                         create_normalmodel(train, variance = 4, iterations = 200))
+# Each model becomes a list of windows
+windows <- use_expanding_window(models, start = 2007)
+length(windows[[1]])
 
-# Starting period of the forecasting exercise
-start_period <- 2007
-
-# Create model
-model <- create_bvarmodel(data = us_macrodata,
-                          p = 1:4,
-                          deterministic = "none",
-                          seasonal = FALSE,
-                          tvp = FALSE,
-                          error = "gamma",
-                          iterations = 10,
-                          burnin = 2)
-# Chosen number of iterations and burn-in draws should be much higher.
-
-# Create multiple model objects for expanding window
-model <- use_expanding_window(model, start = start_period)
-\dontshow{\}) # examplesIf}
 }

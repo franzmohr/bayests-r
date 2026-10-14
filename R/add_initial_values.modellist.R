@@ -9,26 +9,19 @@
 #' @return The object in \code{object} with initial values added to each of its models, as
 #' described in \code{add_initial_values.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
-#' 
-#' # Load data
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
-#' 
-#' # Create model
-#' model <- create_bvarmodel(e1, p = 0:2, deterministic = "const",
-#'                           iterations = 10, burnin = 10)
-#' # Number of iterations and burnin should be much higher.
-#' 
-#' # Add prior specifications
-#' model <- add_priors(model,
-#'                     coef = list(v_i = 1, v_i_det = 1 / 10),
-#'                     sigma = list(df = "k", scale = 1))
-#' 
-#' # Add initial values
-#' model <- add_initial_values(model)
-#' 
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#' train <- window(y, end = c(2008, 4))
+#'
+#' # Two models that differ in the variance they take as known
+#' models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+#'                          create_normalmodel(train, variance = 4, iterations = 200))
+#' models <- add_priors(models, mean = 0, prior_variance = 10)
+#' models <- add_initial_values(models)
+#'
 #' @export
 add_initial_values.modellist <- function(object, ...){
   

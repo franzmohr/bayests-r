@@ -55,6 +55,24 @@
 #' estimated, \code{posterior}. The draws of a sampler are
 #' \code{\link[coda]{mcmc}} objects.
 #'
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#'
+#' model <- create_normalmodel(y, iterations = 200)
+#' model <- add_priors(model, mean = 0, prior_variance = 10)
+#' model <- add_initial_values(model)
+#' model <- add_posterior_coefficients(model)
+#'
+#' file <- file.path(tempdir(), "bayests-example-read.h5")
+#' unlink(file)
+#' write_to_hdf5(model, filename = file)
+#' stored <- read_model_from_hdf5(file)
+#' # Only the first ten draws
+#' stored <- read_model_from_hdf5(file, draws = 1:10)
+#'
 #' @seealso \code{\link{read_hdf5_model}}, \code{\link{from_bayests_tree}},
 #' \code{\link{read_bayests_tree}}, \code{\link{write_to_hdf5}}.
 #'

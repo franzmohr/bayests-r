@@ -44,33 +44,22 @@ responses of an impulse response, the shares of a variance decomposition.
 What they return is what the same call on the model in memory returns.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data("e1")
-e1 <- diff(log(e1)) * 100
+model <- create_normalmodel(y, iterations = 200)
+model <- add_priors(model, mean = 0, prior_variance = 10)
+model <- add_initial_values(model)
+model <- add_posterior_coefficients(model)
 
-model <- create_bvarmodel(e1, p = 2, deterministic = "const",
-                          iterations = 100, burnin = 10)
-# Number of iterations and burn-in should be much higher.
-
-model <- add_priors(model,
-                    coef = list(v_i = 0, v_i_det = 0),
-                    sigma = list(df = 1, scale = .0001))
-model <- add_posterior_coefficients(add_initial_values(model))
-
-file <- file.path(tempdir(), "bayests-example-model.h5")
+file <- file.path(tempdir(), "bayests-example-model-file.h5")
 unlink(file)
 write_to_hdf5(model, filename = file)
-
 stored <- read_model_file(file)
 stored
 
-# The analysis reads the draws in pieces
-ir <- irf(stored, impulse = "invest", response = "income", n_ahead = 5,
-          chunk = 25)
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other model comparison:

@@ -38,14 +38,14 @@
 #'
 #' @return \code{object} with the seed set.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
-#' # Load data
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
 #'
-#' # Generate model
-#' model <- create_bvarmodel(data = e1, p = 2, iterations = 100, burnin = 50)
+#' model <- create_normalmodel(y, iterations = 200)
+#' model <- add_priors(model, mean = 0, prior_variance = 10)
 #'
 #' # Set the seed of the posterior simulation
 #' model <- add_seed(model, 20260916)

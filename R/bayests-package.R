@@ -27,8 +27,11 @@
 #'   \code{\link{choose_best_model}} and \code{\link{chain_diagnostics}}.
 #' }
 #'
-#' The package estimates no model of its own. A file of a model class is read
-#' into the object of the package that defines it, which
+#' The package estimates no model for analysis. The one model it defines,
+#' \code{\link{create_normalmodel}}, a normal model of the mean with known
+#' variance, is there to show the workflow without a model package, and the
+#' examples of this package run on it. A file of a model class is read into the
+#' object of the package that defines it, which
 #' \code{\link{read_model_from_hdf5}} loads for the purpose.
 #'
 #' @references
