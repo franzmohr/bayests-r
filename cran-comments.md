@@ -47,9 +47,11 @@ next release (1.0.0) imports it and will be submitted once bayests is on CRAN.
   methods for impulse responses and variance decompositions
   (`?plot.bvarirf`, `?plot.bvarfevd`), whose objects the example model, having
   no dynamics, cannot produce. They are guarded by
-  `requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"`,
+  `nzchar(system.file(package = "bvartools")) && utils::packageVersion("bvartools") >= "1.0.0"`,
   since the bvartools on CRAN (0.3.0) predates bayests, and run once
-  bvartools 1.0.0 is on CRAN. The generics whose only methods are those of a
+  bvartools 1.0.0 is on CRAN. The guard asks for the version without loading
+  the namespace: bvartools 0.3.0 registers plot methods of its own for these
+  classes, which would replace those of bayests for the rest of the examples. The generics whose only methods are those of a
   VAR -- `irf()`, `fevd()`, `add_sign_restrictions()`,
   `add_sign_zero_restrictions()` and `time_variation_test()` -- have no
   example here; theirs are in bvartools.

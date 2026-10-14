@@ -5,7 +5,7 @@
 #' @param x an object of class "bvarirf", usually, a result of a call to \code{\link[bayests]{irf}}.
 #' @param ... further graphical parameters.
 #' 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
+#' @examplesIf nzchar(system.file(package = "bvartools")) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data

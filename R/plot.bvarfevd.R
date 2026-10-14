@@ -10,7 +10,7 @@
 #' \code{NULL}, so that a segment is shown for every variable of the decomposition.
 #' @param ... further graphical parameters.
 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
+#' @examplesIf nzchar(system.file(package = "bvartools")) && utils::packageVersion("bvartools") >= "1.0.0"
 #' library("bvartools")
 #' 
 #' # Load data
