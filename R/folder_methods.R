@@ -60,7 +60,6 @@
 #' stored <- add_seed(stored, 20260919)
 #' stored <- add_posterior_coefficients(stored)
 #' stored <- add_posterior_loglik(stored)
-#' selection_criteria(read_models_from_folder(folder))
 #'
 #' @name folder_steps
 #' @family model comparison

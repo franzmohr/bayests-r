@@ -25,7 +25,7 @@ plot.
 A plot function for objects of class "bvarfevd".
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
+\dontshow{if (nzchar(system.file(package = "bvartools")) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
 library("bvartools")
 
 # Load data
