@@ -26,32 +26,22 @@
 #' \code{group}, \code{model}, \code{data}, \code{priors} and \code{draws}, the
 #' number of draws in the file.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
 #'
-#' # Load data
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
+#' model <- create_normalmodel(y, iterations = 200)
+#' model <- add_priors(model, mean = 0, prior_variance = 10)
+#' model <- add_initial_values(model)
+#' model <- add_posterior_coefficients(model)
 #'
-#' model <- create_bvarmodel(e1, p = 2, deterministic = "const",
-#'                           iterations = 100, burnin = 10)
-#' # Number of iterations and burn-in should be much higher.
-#'
-#' model <- add_priors(model,
-#'                     coef = list(v_i = 0, v_i_det = 0),
-#'                     sigma = list(df = 1, scale = .0001))
-#' model <- add_posterior_coefficients(add_initial_values(model))
-#'
-#' file <- file.path(tempdir(), "bayests-example-model.h5")
+#' file <- file.path(tempdir(), "bayests-example-model-file.h5")
 #' unlink(file)
 #' write_to_hdf5(model, filename = file)
-#'
 #' stored <- read_model_file(file)
 #' stored
-#'
-#' # The analysis reads the draws in pieces
-#' ir <- irf(stored, impulse = "invest", response = "income", n_ahead = 5,
-#'           chunk = 25)
 #'
 #' @family model comparison
 #' @export
@@ -99,11 +89,19 @@ print.modelfile <- function(x, ...) {
     stop("The model in ", filename, " holds no posterior draws.")
   }
   posterior <- root[["posterior"]]
-  if (!"u_sigma_inv" %in% names(posterior)) {
-    stop("The model in ", filename, " holds no draws of its error precision, ",
+  # The error precision where the model has one, as every VAR and VEC does;
+  # otherwise the first block of coefficient draws, since a model of another
+  # package need not have an error precision at all.
+  blocks <- setdiff(names(posterior), c("forecast", "loglik"))
+  blocks <- c(intersect("u_sigma_inv", blocks), setdiff(blocks, "u_sigma_inv"))
+  blocks <- Filter(function(block) {
+    inherits(posterior[[block]], "H5Group") && "coeffs" %in% names(posterior[[block]])
+  }, blocks)
+  if (length(blocks) == 0) {
+    stop("The model in ", filename, " holds no coefficient draws, ",
          "so the length of its chain cannot be read.")
   }
-  draws <- posterior[["u_sigma_inv"]][["coeffs"]]$dims[1]
+  draws <- posterior[[blocks[1]]][["coeffs"]]$dims[1]
   file$close_all()
 
   as.integer(draws)
@@ -131,29 +129,27 @@ print.modelfile <- function(x, ...) {
 #'
 #' @return A list with one element per piece of the chain.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
 #'
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
-#' model <- create_bvarmodel(e1, p = 2, deterministic = "const",
-#'                           iterations = 100, burnin = 10)
-#' model <- add_priors(model,
-#'                     coef = list(v_i = 0, v_i_det = 0),
-#'                     sigma = list(df = 1, scale = .0001))
-#' model <- add_posterior_coefficients(add_initial_values(model))
+#' model <- create_normalmodel(y, iterations = 200)
+#' model <- add_priors(model, mean = 0, prior_variance = 10)
+#' model <- add_initial_values(model)
+#' model <- add_posterior_coefficients(model)
 #'
 #' file <- file.path(tempdir(), "bayests-example-draws.h5")
 #' unlink(file)
 #' write_to_hdf5(model, filename = file)
-#'
 #' stored <- read_model_file(file)
 #'
-#' # The mean of every coefficient, without reading the chain at once
+#' # The mean of each series' draws, without reading the chain at once
 #' sums <- map_draws(stored, function(model) {
-#'   colSums(unclass(model[["posterior"]][["a"]][["coeffs"]]))
-#' }, chunk = 25)
-#' means <- Reduce(`+`, sums) / stored[["draws"]]
+#'   colSums(unclass(model[["posterior"]][["mu"]][["coeffs"]]))
+#' }, chunk = 50)
+#' Reduce(`+`, sums) / stored[["draws"]]
 #'
 #' @family model comparison
 #' @export
