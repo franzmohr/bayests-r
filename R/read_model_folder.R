@@ -31,23 +31,25 @@
 #' \code{manifest}, a data frame with the columns \code{model}, \code{file},
 #' \code{group} and the specification of each model.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#' train <- window(y, end = c(2008, 4))
 #'
-#' data("e1")
-#' train <- diff(log(e1)) * 100
-#'
-#' models <- create_bvarmodel(data = train, p = 1:3, deterministic = "const",
-#'                            iterations = 20, burnin = 10)
+#' # Two models that differ in the variance they take as known
+#' models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+#'                          create_normalmodel(train, variance = 4, iterations = 200))
+#' models <- add_priors(models, mean = 0, prior_variance = 10)
 #'
 #' folder <- file.path(tempdir(), "bayests-example-folder")
 #' unlink(folder, recursive = TRUE)
-#' dir.create(folder, recursive = TRUE)
+#' dir.create(folder)
 #' write_to_hdf5(models, folder = folder)
-#'
 #' stored <- read_model_folder(folder)
 #' stored
-#' stored[["manifest"]][, c("model", "p", "iterations")]
+#' stored[["manifest"]][, c("model", "algorithm", "iterations")]
 #'
 #' @family model comparison
 #' @export

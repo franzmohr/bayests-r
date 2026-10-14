@@ -19,7 +19,10 @@ The R infrastructure shared by the packages that run the samplers of the
 
 Each of them builds its own model objects. `bayests` holds what they have in
 common, so that a model of one package is set up, estimated, stored and
-compared the same way as a model of another. It estimates no model itself.
+compared the same way as a model of another. It estimates no model for
+analysis: the one it defines, `create_normalmodel()`, a conjugate normal model of
+the mean with known variance, is there to show the workflow without a model
+package, and the examples run on it.
 
 | Part | Functions |
 | --- | --- |
@@ -27,6 +30,7 @@ compared the same way as a model of another. It estimates no model itself.
 | Model files | `read_model_from_hdf5()`, `read_bayests_tree()`, `write_bayests_tree()`, `from_bayests_tree()`, `read_hdf5_model()`, `read_model_groups()`, `read_models_from_folder()` |
 | Stored models | `read_model_file()`, `map_draws()`, `read_model_folder()`, `map_models()`, `model_files()` |
 | Lists of models | the `modellist` and `expandingwindow` methods of every generic, `combine_models()`, `use_expanding_window()` |
+| An example model | `create_normalmodel()` and its methods |
 | The BayesTS command line | `bayests_files()`, `bayests_posterior()` |
 | Model comparison | `selection_criteria()`, `choose_best_model()`, `chain_diagnostics()`, `plot_predictive_loglik()` |
 

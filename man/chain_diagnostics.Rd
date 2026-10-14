@@ -83,21 +83,17 @@ The chains start from the same initial values, those of
 starting values would make the comparison more demanding.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
-data("e1")
-e1 <- diff(log(e1)) * 100
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-model <- create_bvarmodel(e1, p = 1, deterministic = "const",
-                          iterations = 200, burnin = 100)
-model <- add_priors(model, coef = list(v_i = 0, v_i_det = 0),
-                    sigma = list(df = "k", scale = 1))
+model <- create_normalmodel(y, iterations = 200)
+model <- add_priors(model, mean = 0, prior_variance = 10)
 model <- add_initial_values(model)
 model <- add_posterior_coefficients(model, chains = 2)
+chain_diagnostics(model)
 
-diag <- chain_diagnostics(model)
-max(diag$rhat, na.rm = TRUE)
-\dontshow{\}) # examplesIf}
 }
 \references{
 Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B.

@@ -39,44 +39,26 @@
 #' @return An integer giving the position of the best model in the list provided
 #' in argument \code{object}. Where several models attain the best value
 #' exactly, the positions of all of them, in increasing order.
-#' 
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
-#' # Load data
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
-#' 
-#' # Create model
-#' model <- create_bvarmodel(e1, p = 1:3, deterministic = "const",
-#'                           iterations = 50, burnin = 10)
-#' # Number of iterations and burnin should be much higher.
-#' 
-#' # Add priors
-#' model <- add_priors(model,
-#'                     coef = list(v_i = 1, v_i_det = 1 / 10),
-#'                     sigma = list(df = "k", scale = 1))
-#' 
-#' # Add initial values
-#' model <- add_initial_values(model)
 #'
-#' # Obtain posterior draws 
-#' model <- add_posterior_coefficients(model)
-#' 
-#' # Obtain posterior log-likelihoods
-#' model <- add_posterior_loglik(model)
-#' 
-#' # Calculate selection criteria
-#' sel <- selection_criteria(model)
-#' 
-#' # View results
-#' sel
-#' 
-#' # Choose best model according to WAIC, the default
-#' choose_best_model(sel)
-#' 
-#' # Choose best model according to AIC
-#' choose_best_model(sel, criterion = "AIC")
-#' 
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#' train <- window(y, end = c(2008, 4))
+#'
+#' # Two models that differ in the variance they take as known
+#' models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+#'                          create_normalmodel(train, variance = 4, iterations = 200))
+#' models <- add_priors(models, mean = 0, prior_variance = 10)
+#' models <- add_initial_values(models)
+#' models <- add_posterior_coefficients(models)
+#' models <- add_posterior_loglik(models)
+#'
+#' criteria <- selection_criteria(models)
+#' # The model whose variance is close to that of the data
+#' choose_best_model(criteria, criterion = "WAIC")
+#'
 #' @family model comparison
 #' @export
 #' @method choose_best_model selcritlist

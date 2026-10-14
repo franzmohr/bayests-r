@@ -90,32 +90,26 @@ plotted over the periods they share with the baseline, and a model without an
 \code{LPL} entry is left out with a warning.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
+train <- window(y, end = c(2008, 4))
 
-data("us_macrodata")
+# Two models that differ in the variance they take as known
+models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+                         create_normalmodel(train, variance = 4, iterations = 200))
+models <- add_priors(models, mean = 0, prior_variance = 10)
+models <- add_initial_values(models)
+models <- add_posterior_coefficients(models)
+models <- add_forecast_input(models, n_ahead = 4)
+models <- add_posterior_forecasts(models)
+models <- add_predictive_loglik(models, test_sample = y)
 
-# Two specifications to compare
-models <- create_bvarmodel(data = us_macrodata, p = 1:2,
-                           deterministic = "const",
-                           iterations = 100, burnin = 50)
-models <- add_priors(models,
-                     coef = list(v_i = 1, v_i_det = 1 / 10),
-                     sigma = list(df = 3, scale = 1))
-
-# One window per evaluated period
-windows <- lapply(models, use_expanding_window, start = c(1972, 1))
-
-criteria <- lapply(windows, function(w) {
-  w <- add_initial_values(w)
-  w <- add_posterior_coefficients(w)
-  w <- add_predictive_loglik(w)
-  selection_criteria(w)
-})
-class(criteria) <- append("selcritlist", class(criteria))
-
+# The log predictive likelihood of each forecast horizon, cumulated
+criteria <- selection_criteria(models)
 plot_predictive_loglik(criteria, baseline = 1)
-\dontshow{\}) # examplesIf}
+
 }
 \seealso{
 \code{\link{selection_criteria}} for the sum and its band,

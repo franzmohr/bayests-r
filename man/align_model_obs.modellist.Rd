@@ -20,23 +20,17 @@ observations common to all models, ensuring that comparisons are computed
 on the same underlying sample.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data(e6)
+# Two models on samples that start in different periods
+models <- combine_models(create_normalmodel(window(y, start = c(2001, 1))),
+                         create_normalmodel(window(y, start = c(2003, 1))))
+models <- align_model_obs(models)
+sapply(models, function(x) start(x[["data"]][["train"]][["y"]]))
 
-# Create multiple VAR models
-model_1 <- create_bvarmodel(diff(e6), p = 0:2, deterministic = "const")
-
-# Create multiple VEC models
-model_2 <- create_bvecmodel(e6, p = 1, r = 0:1, const = "unrestricted")
-
-# Combine the models in one object
-model <- combine_models(model_1, model_2)
-
-model <- align_model_obs(model)
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other model comparison:

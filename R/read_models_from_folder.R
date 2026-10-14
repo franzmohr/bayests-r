@@ -41,24 +41,24 @@
 #' @return A named list of class 'modellist', or of class 'expandingwindow' if
 #' the models say they belong to one.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#' train <- window(y, end = c(2008, 4))
 #'
-#' # Load data
-#' data("e1")
-#' train <- diff(log(e1)) * 100
+#' # Two models that differ in the variance they take as known
+#' models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+#'                          create_normalmodel(train, variance = 4, iterations = 200))
+#' models <- add_priors(models, mean = 0, prior_variance = 10)
 #'
-#' # Create and store models
-#' folder <- file.path(tempdir(), "models")
-#' dir.create(folder, showWarnings = FALSE)
-#' for (p in 1:2) {
-#'   model <- create_bvarmodel(data = train, p = p, deterministic = "const",
-#'                             iterations = 10, burnin = 10)
-#'   write_to_hdf5(model, filename = file.path(folder, paste0("model-", p, ".h5")))
-#' }
-#'
-#' models <- read_models_from_folder(folder)
-#' names(models)
+#' folder <- file.path(tempdir(), "bayests-example-models")
+#' unlink(folder, recursive = TRUE)
+#' dir.create(folder)
+#' write_to_hdf5(models, folder = folder)
+#' stored <- read_models_from_folder(folder)
+#' length(stored)
 #'
 #' @export
 read_models_from_folder <- function(folder, draws = NULL) {

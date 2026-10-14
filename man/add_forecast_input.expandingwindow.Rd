@@ -23,28 +23,18 @@ Generates and adds data matrices for forecast simulation to the elements of
 an object of class 'expandingwindow'.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data("e1")
-orig <- diff(log(e1)) * 100
-train <- window(orig, end = c(1982, 2))
+model <- create_normalmodel(y, iterations = 200)
 
+# One window per forecast origin from 2007Q4 on
+windows <- use_expanding_window(model, start = 2008)
+windows <- add_priors(windows, mean = 0, prior_variance = 10)
+windows <- add_initial_values(windows)
+windows <- add_posterior_coefficients(windows)
+windows <- add_forecast_input(windows, n_ahead = 2)
 
-# Create model
-model <- create_bvarmodel(data = train, p = 2, deterministic = "const",
-                          iterations = 20, burnin = 10)
-# Number of iterations and burnin should be much higher.
-
-model <- use_expanding_window(model, start = 1982.25)
-
-# Add priors
-model <- add_priors(model,
-                    coef = list(v_i = 1, v_i_det = 1 / 10),
-                    sigma = list(df = "k", scale = 1))
-
-# Add data used for forecast calculation
-model <- add_forecast_input(model, n_ahead = 4)
-\dontshow{\}) # examplesIf}
 }

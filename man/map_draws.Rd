@@ -33,30 +33,27 @@ shares of a variance decomposition are averaged over the pieces they came
 from.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-data("e1")
-e1 <- diff(log(e1)) * 100
-model <- create_bvarmodel(e1, p = 2, deterministic = "const",
-                          iterations = 100, burnin = 10)
-model <- add_priors(model,
-                    coef = list(v_i = 0, v_i_det = 0),
-                    sigma = list(df = 1, scale = .0001))
-model <- add_posterior_coefficients(add_initial_values(model))
+model <- create_normalmodel(y, iterations = 200)
+model <- add_priors(model, mean = 0, prior_variance = 10)
+model <- add_initial_values(model)
+model <- add_posterior_coefficients(model)
 
 file <- file.path(tempdir(), "bayests-example-draws.h5")
 unlink(file)
 write_to_hdf5(model, filename = file)
-
 stored <- read_model_file(file)
 
-# The mean of every coefficient, without reading the chain at once
+# The mean of each series' draws, without reading the chain at once
 sums <- map_draws(stored, function(model) {
-  colSums(unclass(model[["posterior"]][["a"]][["coeffs"]]))
-}, chunk = 25)
-means <- Reduce(`+`, sums) / stored[["draws"]]
-\dontshow{\}) # examplesIf}
+  colSums(unclass(model[["posterior"]][["mu"]][["coeffs"]]))
+}, chunk = 50)
+Reduce(`+`, sums) / stored[["draws"]]
+
 }
 \seealso{
 Other model comparison:

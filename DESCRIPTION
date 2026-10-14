@@ -7,14 +7,16 @@ Description: The infrastructure shared by the R packages that run the samplers
     such as 'bvartools': the generic
     functions of their model workflow, reading and writing model files in the
     'BayesTS' 'HDF5' layout, lists of models and expanding windows, running
-    models through the 'BayesTS' command line, and comparing models. The package
-    estimates no model of its own.
+    models through the 'BayesTS' command line, and comparing models. Its only
+    model, a conjugate normal model of the mean with known variance, shows the
+    workflow without a model package.
 License: GPL (>= 2)
 URL: https://github.com/franzmohr/bayests-r
 BugReports: https://github.com/franzmohr/bayests-r/issues
 Depends:
-    R (>= 4.0.0)
-Imports: coda, grDevices, graphics, hdf5r, parallel, posterior (>= 1.7.0), stats, utils
+    R (>= 4.0.0),
+    coda
+Imports: grDevices, graphics, hdf5r, parallel, posterior (>= 1.7.0), stats, utils
 Suggests: bvartools, loo (>= 2.10.0), testthat (>= 3.0.0)
 Encoding: UTF-8
 Config/roxygen2/version: 8.1.0
@@ -77,6 +79,7 @@ Collate:
     'hdf5_write.R'
     'irf.R'
     'map_models.R'
+    'normalmodel.R'
     'parallel_models.R'
     'plot.bvarfevd.R'
     'plot.bvarirf.R'

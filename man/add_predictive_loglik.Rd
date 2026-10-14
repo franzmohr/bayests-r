@@ -40,6 +40,23 @@ package of its models: \code{add_predictive_loglik.expandingwindow} (\pkg{bvarto
 for the VAR and VEC models of \pkg{bvartools}. The method for a 'modellist'
 applies it to every window exercise of the list.
 }
+\examples{
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
+
+model <- create_normalmodel(window(y, end = c(2008, 4)), iterations = 200)
+model <- add_priors(model, mean = 0, prior_variance = 10)
+model <- add_initial_values(model)
+model <- add_posterior_coefficients(model)
+model <- add_forecast_input(model, n_ahead = 4)
+model <- add_posterior_forecasts(model)
+model <- add_predictive_loglik(model, test_sample = y)
+
+selection_criteria(model)
+
+}
 \references{
 Geweke, J., & Amisano, G. (2011). Hierarchical Markov normal mixture models with
 applications to financial asset returns. \emph{Journal of Applied Econometrics, 26}(1),

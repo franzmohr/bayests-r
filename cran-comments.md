@@ -36,19 +36,26 @@ next release (1.0.0) imports it and will be submitted once bayests is on CRAN.
 
 ## Notes for the reviewer
 
-* **bvartools is in Suggests, and the examples need its next version.** A
-  model class comes from a package that builds on bayests, so the examples use
-  the VAR models of bvartools. The bvartools on CRAN (0.3.0) predates bayests,
-  so every example is guarded by
-  `requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"`
-  and is skipped until bvartools 1.0.0 is on CRAN. The tests do not need
-  bvartools: they define a model class of their own.
+* **The examples run on a model of the package's own.** Model classes come
+  from the packages that build on bayests, so the package defines one small
+  model for its examples, `create_normalmodel()`: a conjugate normal model of
+  the mean with known variance, whose posterior draws are exact. Every example
+  that sets up, estimates, stores or compares models runs on it, without any
+  other package.
 
-* **\donttest{}** is used twice:
-  * in `?folder_steps`, whose steps each read and write every model file of a
-    folder: the timed part takes 2.3 s, the whole example 4.5 s;
-  * in `?add_posterior_coefficients.modellist`, for the same estimation on two
-    worker processes.
+* **bvartools is in Suggests** for two examples only, those of the plot
+  methods for impulse responses and variance decompositions
+  (`?plot.bvarirf`, `?plot.bvarfevd`), whose objects the example model, having
+  no dynamics, cannot produce. They are guarded by
+  `requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"`,
+  since the bvartools on CRAN (0.3.0) predates bayests, and run once
+  bvartools 1.0.0 is on CRAN. The generics whose only methods are those of a
+  VAR -- `irf()`, `fevd()`, `add_sign_restrictions()`,
+  `add_sign_zero_restrictions()` and `time_variation_test()` -- have no
+  example here; theirs are in bvartools.
+
+* **\donttest{}** is used once, in `?add_posterior_coefficients.modellist`,
+  for the same estimation on two worker processes.
 
 * **\dontrun{}** is used once, in `?bayests_files`, whose functions run the
   BayesTS command-line program on directories of model files. The program is

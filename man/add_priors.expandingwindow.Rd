@@ -21,27 +21,15 @@ Adds prior specifications to a list of models by passing each element to
 the respective method.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-data("us_macrodata")
+model <- create_normalmodel(y, iterations = 200)
 
-# Starting period of the forecasting exercise
-start_period <- 2007
+# One window per forecast origin from 2007Q4 on
+windows <- use_expanding_window(model, start = 2008)
+windows <- add_priors(windows, mean = 0, prior_variance = 10)
 
-# AR(1) models as benchmark
-model <- create_bvarmodel(data = us_macrodata, p = 1,
-                          deterministic = "none",
-                          error = "gamma",
-                          iterations = 10, burnin = 10)
-
-# Obtain objects for expanding window estimation
-model <- use_expanding_window(model, start = start_period)
-
-# Add priors
-model <- add_priors(model,
-                    coef = list(v_i = 1, v_i_det = 1 / 10),
-                    sigma = list(shape = 3, rate = 1))
-
-\dontshow{\}) # examplesIf}
 }

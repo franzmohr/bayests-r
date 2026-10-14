@@ -11,32 +11,21 @@
 #' @return The object in \code{object} with log-likelihood draws added to each of its models, as
 #' described in \code{add_posterior_loglik.bvarmodel} (\pkg{bvartools}).
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
-#' 
-#' # Load data 
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
-#' 
-#' # Generate model
-#' model <- create_bvarmodel(e1, p = 1:2, deterministic = 2,
-#'                           iterations = 10, burnin = 10)
-#' # Chosen number of iterations and burn-in should be much higher.
-#' 
-#' # Add priors
-#' model <- add_priors(model,
-#'                     coef = list(v_i = 1, v_i_det = 1 / 10),
-#'                     sigma = list(df = "k", scale = 1))
-#' 
-#' # Add initial values
-#' model <- add_initial_values(model)
-#' 
-#' # Obtain posterior draws
-#' object <- add_posterior_coefficients(model)
-#' 
-#' # Add log-likelihoods
-#' object <- add_posterior_loglik(object)
-#' 
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#' train <- window(y, end = c(2008, 4))
+#'
+#' # Two models that differ in the variance they take as known
+#' models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+#'                          create_normalmodel(train, variance = 4, iterations = 200))
+#' models <- add_priors(models, mean = 0, prior_variance = 10)
+#' models <- add_initial_values(models)
+#' models <- add_posterior_coefficients(models)
+#' models <- add_posterior_loglik(models)
+#'
 #' @export
 add_posterior_loglik.modellist <- function(object, ..., cores = 1){
 

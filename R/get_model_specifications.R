@@ -23,18 +23,14 @@
 #'   \item{varsel}{the used variable selection algorithm.}
 #' }
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
 #'
-#' # Load data
-#' data("e1")
-#' e1 <- diff(log(e1)) * 100
-#'
-#' # Create model
-#' model <- create_bvarmodel(e1, p = 2, deterministic = "const",
-#'                           iterations = 10, burnin = 10)
-#'
-#' # Obtain model specifications
+#' model <- create_normalmodel(y, iterations = 200)
+#' model <- add_priors(model, mean = 0, prior_variance = 10)
 #' get_model_specifications(model)
 #'
 #' @export

@@ -30,22 +30,17 @@ This is the same rule the BayesTS command line applies for its
 \code{--all-groups} flag, so both agree on which groups of a file are models.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data("e1")
-train <- diff(log(e1)) * 100
-
-# Create and store two models in one file
-path_to_model <- tempfile(fileext = ".h5")
-for (p in 1:2) {
-  model <- create_bvarmodel(data = train, p = p, deterministic = "const",
-                            iterations = 10, burnin = 10)
-  write_to_hdf5(model, filename = path_to_model,
-                group = paste0("/models/", p))
+# Two models in one file
+file <- tempfile(fileext = ".h5")
+for (v in c(1, 4)) {
+  model <- create_normalmodel(y, variance = v)
+  write_to_hdf5(model, filename = file, group = paste0("/models/variance-", v))
 }
+read_model_groups(file)
 
-read_model_groups(path_to_model)
-\dontshow{\}) # examplesIf}
 }

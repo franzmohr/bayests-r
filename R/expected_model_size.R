@@ -19,6 +19,16 @@
 #' @return The value returned by the method for the class of \code{object},
 #' as described on the pages of the methods.
 #'
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#'
+#' model <- create_normalmodel(y, iterations = 200)
+#' model <- add_priors(model, mean = 0, prior_variance = 10)
+#' expected_model_size(model, chains = 2)
+#'
 #' @seealso Methods: \code{expected_model_size.bvarmodel} (\pkg{bvartools}),
 #' \code{expected_model_size.bvecmodel} (\pkg{bvartools}),
 #' \code{\link{expected_model_size.expandingwindow}},

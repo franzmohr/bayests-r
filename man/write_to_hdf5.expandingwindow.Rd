@@ -22,35 +22,23 @@ subfolder of \code{folder} created for the exercise.
 Exports the content of an object of class 'expandingwindow' to multiple HDF5 file.
 }
 \examples{
-\dontshow{if (requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0") withAutoprint(\{ # examplesIf}
-library("bvartools")
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
 
-# Load data
-data("e1")
-train <- diff(log(e1)) * 100
+model <- create_normalmodel(y, iterations = 200)
 
-# Create model
-model <- create_bvarmodel(data = train,
-                          p = 0:2,
-                          deterministic = "const",
-                          iterations = 10,
-                          burnin = 10)
-# Number of iterations and burnin should be much higher.
+# One window per forecast origin from 2007Q4 on
+windows <- use_expanding_window(model, start = 2008)
+windows <- add_priors(windows, mean = 0, prior_variance = 10)
+windows <- add_initial_values(windows)
+windows <- add_posterior_coefficients(windows)
 
-# Use expanding window
-model <- use_expanding_window(model, start = 1982.5)
+folder <- file.path(tempdir(), "bayests-example-windows")
+unlink(folder, recursive = TRUE)
+dir.create(folder)
+write_to_hdf5(windows, folder = folder)
+list.files(folder, recursive = TRUE)
 
-# Add priors
-model <- add_priors(model,
-                    coef = list(v_i = 1),
-                    sigma = list(df = 3, scale = 1))
-
-# Add initial values
-model <- add_initial_values(model)
-
-# Save model
-path_to_target_directory <- tempdir()
-write_to_hdf5(model, folder = path_to_target_directory)
-
-\dontshow{\}) # examplesIf}
 }

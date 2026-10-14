@@ -17,3 +17,26 @@ A list of class 'expandingwindow' with one model per file in
 \description{
 Imports model information and posterior draws from an HDF5 file.
 }
+\examples{
+# Two series with means 1 and -1
+set.seed(1)
+y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+        frequency = 4)
+
+model <- create_normalmodel(y, iterations = 200)
+
+# One window per forecast origin from 2007Q4 on
+windows <- use_expanding_window(model, start = 2008)
+windows <- add_priors(windows, mean = 0, prior_variance = 10)
+windows <- add_initial_values(windows)
+windows <- add_posterior_coefficients(windows)
+
+folder <- file.path(tempdir(), "bayests-example-read-windows")
+unlink(folder, recursive = TRUE)
+dir.create(folder)
+# The windows are written to a folder of their own inside 'folder'
+paths <- write_to_hdf5(windows, folder = folder)
+stored <- read_expanding_window_model_from_folder(dirname(paths[1]))
+length(stored)
+
+}

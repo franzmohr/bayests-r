@@ -40,32 +40,27 @@
 #'
 #' @return The object in \code{object}, with its manifest brought up to date.
 #'
-#' @examplesIf requireNamespace("bvartools", quietly = TRUE) && utils::packageVersion("bvartools") >= "1.0.0"
-#' library("bvartools")
+#' @examples
+#' # Two series with means 1 and -1
+#' set.seed(1)
+#' y <- ts(cbind(a = rnorm(40, 1), b = rnorm(40, -1)), start = c(2000, 1),
+#'         frequency = 4)
+#' train <- window(y, end = c(2008, 4))
 #'
-#' data("e1")
-#' train <- diff(log(e1)) * 100
-#'
-#' models <- create_bvarmodel(data = train, p = 1:2, deterministic = "const",
-#'                            iterations = 20, burnin = 10)
+#' # Two models that differ in the variance they take as known
+#' models <- combine_models(create_normalmodel(train, variance = 1, iterations = 200),
+#'                          create_normalmodel(train, variance = 4, iterations = 200))
+#' models <- add_priors(models, mean = 0, prior_variance = 10)
 #'
 #' folder <- file.path(tempdir(), "bayests-example-steps")
 #' unlink(folder, recursive = TRUE)
-#' dir.create(folder, recursive = TRUE)
+#' dir.create(folder)
 #' write_to_hdf5(models, folder = folder)
-#'
 #' stored <- read_model_folder(folder)
-#' stored <- add_priors(stored, coef = list(v_i = 1),
-#'                      sigma = list(df = 3, scale = 1))
-#'
-#' # Each step reads and writes every file in the folder, so the rest are left
-#' # out of the timed run of the examples.
-#' \donttest{
-#' stored <- add_initial_values(stored)
 #' stored <- add_seed(stored, 20260919)
 #' stored <- add_posterior_coefficients(stored)
 #' stored <- add_posterior_loglik(stored)
-#' }
+#' selection_criteria(read_models_from_folder(folder))
 #'
 #' @name folder_steps
 #' @family model comparison
